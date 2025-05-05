@@ -4,7 +4,9 @@
   --font-sans: var(--font-poppins-sans);
   --font-mono: var(--font-poppins-mono);
 }
-
+* {
+  scroll-behavior: smooth;
+}
 body {
   font-family: var(--font-poppins-sans), sans-serif;
 }

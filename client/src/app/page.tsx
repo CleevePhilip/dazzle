@@ -2,6 +2,8 @@ import React from "react";
 import Image from "next/image";
 import { TechStack } from "@/components/tech-stack";
 import { Card, CardContent } from "@/components/ui/card";
+import { FiDownload, FiArrowRight } from "react-icons/fi";
+import { FiMail } from "react-icons/fi";
 import {
   Carousel,
   CarouselContent,
@@ -21,33 +23,40 @@ const Home = () => {
           <h1 className="text-3xl font-semibold">[D.E]</h1>
           <ul className="flex space-x-5">
             <li className="">
-              <a href="#">Home</a>
+              <a href="#home">Home</a>
             </li>{" "}
             <li className="">
-              <a href="#">About</a>
+              <a href="#about">About</a>
             </li>{" "}
             <li className="">
-              <a href="#">Background</a>
+              <a href="#background">Background</a>
             </li>{" "}
             <li className="">
-              <a href="#">Projects</a>
+              <a href="#projects">Projects</a>
             </li>{" "}
             <li className="">
-              <a href="#">Certifications</a>
+              <a href="#certifications">Certifications</a>
             </li>
           </ul>
-          <button className="bg-[#F85F00] text-white   px-5 py-3">
-            Contact me
+          <button className="group bg-[#F85F00] text-white text-md px-5 py-3 flex items-center gap-2 hover:cursor-pointer transition-all duration-300 transform hover:scale-105">
+            <FiMail className="text-lg transform transition-transform duration-300 group-hover:translate-x-1" />
+            Contact Me
           </button>
         </nav>
       </header>
 
-      <main className="w-full  py-15">
+      <main className="w-full  py-15" id="home">
         {/*
           -- HERO PAGE
         */}
         <section className="max-w-7xl mx-auto flex justify-between items-center gap-20 ">
-          <div className="bg-gray-300 h-[584px] w-[584px] "></div>
+          <Image
+            src="/hero-img.png"
+            height={500}
+            width={500}
+            alt="hero-image"
+          />
+
           <div className="flex-1 space-y-5">
             <h2 className="text-[24px] font-semibold">
               Hi, I am <span className="text-[#F85F00]">Dazzle</span>
@@ -67,10 +76,13 @@ const Home = () => {
               </div>
             </div>
             <div className="flex space-x-5">
-              <button className="bg-[#F85F00] text-white  text-md px-5 py-3">
+              <button className="group bg-[#F85F00] text-white text-md px-5 py-3 flex items-center gap-2 hover:cursor-pointer transition-all duration-300 transform hover:scale-105">
+                <FiDownload className="text-lg transform transition-transform duration-300 group-hover:translate-x-1" />
                 Download CV
               </button>
-              <button className="text-[#F85F00] border border-[#F85F00]  text-md px-5 py-3">
+
+              <button className="group text-[#F85F00] border border-[#F85F00] text-md px-5 py-3 flex items-center gap-2 hover:cursor-pointer transition-all duration-300 transform hover:scale-105 hover:bg-[#F85F00] hover:text-white">
+                <FiArrowRight className="text-lg transform transition-transform duration-300 group-hover:translate-x-1" />
                 Learn More
               </button>
             </div>
@@ -87,8 +99,11 @@ const Home = () => {
         {/*
           -- ABOUT PAGE
         */}
-        <section className="max-w-7xl mx-auto  flex justify-between items-center gap-20 m-20 ">
-          <div className="flex-1 space-y-5">
+        <section
+          className="max-w-7xl mx-auto  flex justify-between items-center gap-20 m-20  "
+          id="about"
+        >
+          <div className="space-y-5 ">
             <h1 className="text-3xl font-bold">ABOUT</h1>
             <p className="font-light leading-relaxed">
               Hi! I’m Dazzle Estaciones, a 4th-year IT student at Holy Cross of
@@ -103,15 +118,23 @@ const Home = () => {
               understand.
             </p>
           </div>
-          <div className="">
-            <div className="bg-gray-300 h-[584px] w-[584px]"></div>
-          </div>
+
+          <Image
+            src="/about.png"
+            height={500}
+            width={500}
+            alt="about-img"
+            className="flex-1"
+          />
         </section>
 
         {/*
           -- BACKGROUND PAGE
         */}
-        <section className="max-w-7xl mx-auto flex justify-between items-start gap-20 py-40">
+        <section
+          className="max-w-7xl mx-auto flex justify-between items-start gap-20 py-40"
+          id="background"
+        >
           <div className="flex flex-col gap-20">
             <h1 className="text-2xl font-bold mb-6 text-gray-800">EDUCATION</h1>
             <div className="relative border-l-4 border-gray-300 pl-6 space-y-10">
@@ -241,27 +264,144 @@ const Home = () => {
         {/*
           -- PROJECT PAGE
         */}
-        <section className="max-w-7xl mx-auto py-40">
+        <section className="max-w-7xl mx-auto py-40" id="projects">
           <h1 className="text-3xl font-bold text-center">PROJECTS</h1>
           <div className="grid grid-cols-3 grid-rows-2 gap-10 mt-20">
-            <div className="bg-gray-300 h-[300px] w-[400px]"></div>{" "}
-            <div className="bg-gray-300 h-[300px] w-[400px]"></div>{" "}
-            <div className="bg-gray-300 h-[300px] w-[400px]"></div>{" "}
-            <div className="bg-gray-300 h-[300px] w-[400px]"></div>{" "}
-            <div className="bg-gray-300 h-[300px] w-[400px]"></div>{" "}
-            <div className="bg-gray-300 h-[300px] w-[400px]"></div>
+            <div className="bg-white shadow-md w-[400px] h-[300px] flex flex-col border border-gray-200">
+              <img
+                src="/dazzle_plantita_project.png"
+                alt="Project Screenshot"
+                className="w-full h-[150px] object-cover"
+              />
+              <div className="p-4 flex flex-col justify-between flex-1">
+                <div>
+                  <h2 className="text-lg font-bold text-gray-800">
+                    Project Title
+                  </h2>
+                  <p className="text-sm text-gray-600 mt-2">
+                    Short project description that summarizes what the project
+                    is about.
+                  </p>
+                </div>
+                <a
+                  href="#"
+                  className="text-blue-600 text-sm mt-4 hover:underline font-medium"
+                >
+                  View Project →
+                </a>
+              </div>
+            </div>{" "}
+            <div className="bg-white shadow-md w-[400px] h-[300px] flex flex-col border border-gray-200">
+              <img
+                src="/hcdc_med_project.png"
+                alt="Project Screenshot"
+                className="w-full h-[150px] object-cover"
+              />
+              <div className="p-4 flex flex-col justify-between flex-1">
+                <div>
+                  <h2 className="text-lg font-bold text-gray-800">
+                    Project Title
+                  </h2>
+                  <p className="text-sm text-gray-600 mt-2">
+                    Short project description that summarizes what the project
+                    is about.
+                  </p>
+                </div>
+                <a
+                  href="#"
+                  className="text-blue-600 text-sm mt-4 hover:underline font-medium"
+                >
+                  View Project →
+                </a>
+              </div>
+            </div>{" "}
+            <div className="bg-white shadow-md w-[400px] h-[300px] flex flex-col border border-gray-200">
+              <img
+                src="/usermanual_project.png"
+                alt="Project Screenshot"
+                className="w-full h-[150px] object-cover"
+              />
+              <div className="p-4 flex flex-col justify-between flex-1">
+                <div>
+                  <h2 className="text-lg font-bold text-gray-800">
+                    Project Title
+                  </h2>
+                  <p className="text-sm text-gray-600 mt-2">
+                    Short project description that summarizes what the project
+                    is about.
+                  </p>
+                </div>
+                <a
+                  href="#"
+                  className="text-blue-600 text-sm mt-4 hover:underline font-medium"
+                >
+                  View Project →
+                </a>
+              </div>
+            </div>
+            <div className="bg-white shadow-md w-[400px] h-[300px] flex flex-col border border-gray-200">
+              <img
+                src="/dazsoul_project.png"
+                alt="Project Screenshot"
+                className="w-full h-[150px] object-cover"
+              />
+              <div className="p-4 flex flex-col justify-between flex-1">
+                <div>
+                  <h2 className="text-lg font-bold text-gray-800">
+                    Project Title
+                  </h2>
+                  <p className="text-sm text-gray-600 mt-2">
+                    Short project description that summarizes what the project
+                    is about.
+                  </p>
+                </div>
+                <a
+                  href="#"
+                  className="text-blue-600 text-sm mt-4 hover:underline font-medium"
+                >
+                  View Project →
+                </a>
+              </div>
+            </div>{" "}
+            <div className="bg-white shadow-md w-[400px] h-[300px] flex flex-col border border-gray-200 rounded-md">
+              <img
+                src="/calamity_alert_project.png"
+                alt="Project Screenshot"
+                className="w-full h-[150px] object-cover"
+              />
+              <div className="p-4 flex flex-col justify-between flex-1">
+                <div>
+                  <h2 className="text-lg font-bold text-gray-800">
+                    Calamity Alert
+                  </h2>
+                  <p className="text-sm text-gray-600 mt-2">
+                    Short project description that summarizes what the project
+                    is about.
+                  </p>
+                </div>
+                <a
+                  href="#"
+                  className="text-blue-600 text-sm mt-4 hover:underline font-medium"
+                >
+                  View Project →
+                </a>
+              </div>
+            </div>
           </div>
         </section>
         {/*
           -- CONTACT PAGE
         */}
-        <section className="max-w-7xl mx-auto grid grid-cols-6 gap-20 p-20 md:p-20">
-          <div className="space-y-5 col-span-3">
-            <h1 className="text-4xl font-bold leading-snug">
+        <section
+          className="max-w-7xl mx-auto grid grid-cols-6 gap-20 p-20 md:p-20"
+          id="contact"
+        >
+          <div className="space-y-10 col-span-3">
+            <h1 className="text-4xl font-bold leading-relaxed">
               Let’s connect and collaborate in the creative world of{" "}
               <span className="text-[#F85F00]">UI/UX design</span>.
             </h1>
-            <p className="text-gray-600">
+            <p className="text-gray-600 leading-relaxed">
               Whether you have a project in mind or just want to say hello, I’d
               love to hear from you.
             </p>
@@ -316,7 +456,7 @@ const Home = () => {
               </div>
               <button
                 type="submit"
-                className="bg-[#F85F00] hover:bg-[#d94f00] transition text-white font-semibold px-6 py-3"
+                className="bg-[#F85F00] hover:bg-[#d94f00] w-full transition text-white font-semibold px-6 py-3"
               >
                 Submit
               </button>
@@ -326,27 +466,74 @@ const Home = () => {
         {/*
           -- CERTIFICATES PAGE
         */}
-        <section className="max-w-7xl mx-auto py-40">
+        <section className="max-w-7xl mx-auto py-40" id="certifications">
           <h1 className="text-3xl font-bold text-center">CERTIFICATES</h1>
           <Carousel className="mt-20">
             <CarouselContent>
               <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-                <div className="bg-gray-300 h-[300px] w-[400px]"></div>
+                <div className="bg-white h-[300px] w-[400px]">
+                  {" "}
+                  <Image
+                    src="/COA.jpg"
+                    alt="certificate"
+                    height={300}
+                    width={400}
+                  />
+                </div>
               </CarouselItem>
               <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-                <div className="bg-gray-300 h-[300px] w-[400px]"></div>
+                <div className="bg-white h-[300px] w-[400px]">
+                  {" "}
+                  <Image
+                    src="/COP.jpg"
+                    alt="certificate"
+                    height={300}
+                    width={400}
+                  />
+                </div>
               </CarouselItem>
               <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-                <div className="bg-gray-300 h-[300px] w-[400px]"></div>
+                <div className="bg-white h-[300px] w-[400px]">
+                  {" "}
+                  <Image
+                    src="/MCITS.jpg"
+                    alt="certificate"
+                    height={300}
+                    width={400}
+                  />
+                </div>
               </CarouselItem>{" "}
               <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-                <div className="bg-gray-300 h-[300px] w-[400px]"></div>
+                <div className="bg-white h-[300px] w-[400px]">
+                  {" "}
+                  <Image
+                    src="/UIUX.jpg"
+                    alt="certificate"
+                    height={300}
+                    width={400}
+                  />
+                </div>
               </CarouselItem>{" "}
               <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-                <div className="bg-gray-300 h-[300px] w-[400px]"></div>
+                <div className="bg-white h-[300px] w-[400px]">
+                  <Image
+                    src="/COA.jpg"
+                    alt="certificate"
+                    height={300}
+                    width={400}
+                  />
+                </div>
               </CarouselItem>{" "}
               <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-                <div className="bg-gray-300 h-[300px] w-[400px]"></div>
+                <div className="bg-white h-[300px] w-[400px]">
+                  {" "}
+                  <Image
+                    src="/COA.jpg"
+                    alt="certificate"
+                    height={300}
+                    width={400}
+                  />
+                </div>
               </CarouselItem>
             </CarouselContent>{" "}
             <CarouselPrevious />
@@ -354,24 +541,26 @@ const Home = () => {
           </Carousel>
         </section>
 
-        <section className="max-w-7xl mx-auto flex flex-col justify-center items-center space-y-5 p-30">
-          <h2 className="text-4xl font-bold text-gray-900 leading-snug">
-            Ready to bring your ideas to life?
-          </h2>
-          <p className="text-gray-600 text-lg">
-            Let’s build something amazing together. Whether you're starting a
-            new project or need a design revamp, I’m here to help you make an
-            impact.
-          </p>{" "}
-          <a
-            href="#contact"
-            className="bg-[#F85F00] hover:bg-[#d94f00] transition text-white font-semibold rounded-xl px-8 py-4 text-lg"
-          >
-            Let’s Talk
-          </a>
+        <section className="w-full bg-slate-800 p-30">
+          <div className="max-w-7xl mx-auto  text-white flex flex-col justify-center items-center space-y-5 ">
+            <h2 className="text-4xl font-bold text-white leading-snug">
+              Ready to bring your ideas to life?
+            </h2>
+            <p className="text-white text-lg">
+              Let’s build something amazing together. Whether you're starting a
+              new project or need a design revamp, I’m here to help you make an
+              impact.
+            </p>{" "}
+            <a
+              href="#contact"
+              className="bg-[#F85F00] hover:bg-[#d94f00] transition text-white font-semibold rounded-xl px-8 py-4 text-lg"
+            >
+              Let’s Talk
+            </a>
+          </div>
         </section>
+        <footer className="w-full bg-white  h-[300px]"></footer>
       </main>
-      <footer className="w-full bg-gray-300 h-[300px]"></footer>
     </>
   );
 };
