@@ -328,7 +328,7 @@ const Home = () => {
                     👋 Welcome to my portfolio
                   </span>
                   <h2 className="text-xl sm:text-2xl font-semibold">
-                    Hi, I am <span className="text-orange-500">Dazzles</span>
+                    Hi, I am <span className="text-orange-500">Dazzle</span>
                   </h2>
                 </motion.div>
 
@@ -893,7 +893,7 @@ const Home = () => {
                         </svg>
                       ),
                       label: "Facebook",
-                      link: "https://www.facebook.com/jazzestaciones"
+                      link: "https://www.facebook.com/jazzestaciones",
                     },
                     {
                       icon: (
@@ -906,7 +906,7 @@ const Home = () => {
                         </svg>
                       ),
                       label: "LinkedIn",
-                      link:"https://www.linkedin.com/in/dazzle-estaciones-5a61121b7/"
+                      link: "https://www.linkedin.com/in/dazzle-estaciones-5a61121b7/",
                     },
                   ].map((item, index) => (
                     <motion.a
