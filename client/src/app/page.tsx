@@ -1,9 +1,8 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Image from "next/image";
-import { TechStack } from "@/components/tech-stack";
-import { Card, CardContent } from "@/components/ui/card";
-import { FiDownload, FiArrowRight } from "react-icons/fi";
-import { FiMail } from "react-icons/fi";
+import { motion, AnimatePresence, useInView } from "framer-motion";
+import { FiDownload, FiArrowRight, FiSend } from "react-icons/fi";
 import {
   Carousel,
   CarouselContent,
@@ -11,555 +10,1284 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-
+import { TechStack } from "@/components/tech-stack";
 const Home = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Handle scroll effect
+  React.useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const timelineData = [
+    {
+      type: "Education",
+      items: [
+        {
+          school: "Holy Cross of Davao College",
+          degree: "Bachelor of Science in Information Technology",
+          duration: "2021 – Present",
+        },
+        {
+          school: "Davao City National High School",
+          degree: "Science, Technology, Engineering & Mathematics",
+          duration: "2019 – 2021",
+        },
+        {
+          school: "Sta. Ana National High School",
+          degree: "Junior High School",
+          duration: "2015 – 2019",
+        },
+      ],
+    },
+    {
+      type: "Achievements",
+      items: [
+        {
+          school: "UI/UX Design Certification",
+          degree: "Completed Course",
+          duration: "2023",
+        },
+        {
+          school: "Capstone Project Award",
+          degree: "SMARTRAX Recognition",
+          duration: "2024",
+        },
+        {
+          school: "Hackathon Participant",
+          degree: "Tech Innovation",
+          duration: "2022",
+        },
+      ],
+    },
+    {
+      type: "Experience",
+      items: [
+        {
+          school: "Freelance UI Designer",
+          degree: "Designed 5+ client websites",
+          duration: "2022 – Present",
+        },
+        {
+          school: "SMARTRAX Capstone",
+          degree: "UI Design & Documentation",
+          duration: "2023 – 2024",
+        },
+        {
+          school: "Internship",
+          degree: "Web Development Assistant",
+          duration: "2022",
+        },
+      ],
+    },
+  ];
+
+  const projects = [
+    {
+      title: "Plantita Project",
+      image: "/dazzle_plantita_project.png",
+      description:
+        "A mobile app for plant care with real-time monitoring and tips.",
+    },
+    {
+      title: "HCDC Med",
+      image: "/hcdc_med_project.png",
+      description:
+        "A medical appointment booking system with user-friendly UI.",
+    },
+    {
+      title: "User Manual",
+      image: "/usermanual_project.png",
+      description: "Interactive user guide for a software application.",
+    },
+    {
+      title: "Dazsoul",
+      image: "/dazsoul_project.png",
+      description: "A personal portfolio showcasing creative designs.",
+    },
+    {
+      title: "Calamity Alert",
+      image: "/calamity_alert_project.png",
+      description: "Real-time alert system for natural disasters.",
+    },
+  ];
+
+  const certificates = [
+    "/COA.jpg",
+    "/COP.jpg",
+    "/MCITS.jpg",
+    "/UIUX.jpg",
+    "/COA.jpg",
+    "/COA.jpg",
+  ];
+
   return (
     <>
-      {/*
-      -- NAVBAR PAGE
-    */}
-      <header className="w-full bg-white sticky top-0 z-100">
-        <nav className=" flex justify-between items-center max-w-7xl mx-auto py-3">
-          <h1 className="text-3xl font-semibold">[D.E]</h1>
-          <ul className="flex space-x-5">
-            <li className="">
-              <a href="#home">Home</a>
-            </li>{" "}
-            <li className="">
-              <a href="#about">About</a>
-            </li>{" "}
-            <li className="">
-              <a href="#background">Background</a>
-            </li>{" "}
-            <li className="">
-              <a href="#projects">Projects</a>
-            </li>{" "}
-            <li className="">
-              <a href="#certifications">Certifications</a>
-            </li>
-          </ul>
-          <button className="group bg-[#F85F00] text-white text-md px-5 py-3 flex items-center gap-2 hover:cursor-pointer transition-all duration-300 transform hover:scale-105">
-            <FiMail className="text-lg transform transition-transform duration-300 group-hover:translate-x-1" />
-            Contact Me
-          </button>
-        </nav>
+      {/* Navbar */}
+      <header
+        className={`w-full fixed top-0 z-50 transition-all duration-300 ${
+          isScrolled
+            ? "bg-slate-800/95 backdrop-blur-md shadow-lg py-2"
+            : "bg-transparent py-4"
+        }`}
+      >
+        {/* Desktop Navbar */}
+        <div className="hidden md:flex justify-between items-center px-6 max-w-7xl mx-auto">
+          <motion.h1
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-xl font-bold text-white"
+          >
+            Logo
+          </motion.h1>
+          <nav className="flex items-center space-x-8">
+            {[
+              "Home",
+              "About",
+              "Background",
+              "Projects",
+              "Contact",
+              "Certifications",
+            ].map((item, index) => (
+              <motion.a
+                key={item}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
+                href={`#${item.toLowerCase()}`}
+                className="relative text-white/90 hover:text-white transition-colors group py-2"
+              >
+                {item}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-300 group-hover:w-full" />
+              </motion.a>
+            ))}
+            <motion.button
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3, delay: 0.6 }}
+              className="bg-orange-500 text-white px-6 py-2.5 rounded-lg hover:bg-orange-600 transition-colors flex items-center gap-2 group"
+            >
+              <span>Contact</span>
+              <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
+            </motion.button>
+          </nav>
+        </div>
+
+        {/* Mobile Navbar */}
+        <div className="md:hidden w-full">
+          <div className="flex items-center justify-between p-4">
+            <motion.h1
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-xl font-bold text-white"
+            >
+              Logo
+            </motion.h1>
+            <motion.button
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3 }}
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="focus:outline-none text-white"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d={
+                    menuOpen
+                      ? "M6 18L18 6M6 6l12 12"
+                      : "M4 6h16M4 12h16M4 18h16"
+                  }
+                />
+              </svg>
+            </motion.button>
+          </div>
+          <AnimatePresence>
+            {menuOpen && (
+              <>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 0.5 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="fixed inset-0 bg-black/50 backdrop-blur-sm"
+                  onClick={() => setMenuOpen(false)}
+                />
+                <motion.div
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="absolute top-full left-0 right-0 bg-slate-800/95 backdrop-blur-md shadow-xl py-6 border-t border-white/10"
+                >
+                  <div className="px-6 space-y-4">
+                    {[
+                      "Home",
+                      "About",
+                      "Background",
+                      "Projects",
+                      "Contact",
+                      "Certifications",
+                    ].map((item, index) => (
+                      <motion.a
+                        key={item}
+                        href={`#${item.toLowerCase()}`}
+                        className="block w-full py-3 px-4 rounded-lg text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300"
+                        onClick={() => setMenuOpen(false)}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{
+                          duration: 0.3,
+                          delay: index * 0.1,
+                          ease: "easeOut",
+                        }}
+                      >
+                        {item}
+                      </motion.a>
+                    ))}
+                    <motion.button
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.3, delay: 0.6 }}
+                      className="w-full bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600 transition-colors flex items-center justify-center gap-2 group"
+                    >
+                      <span>Get in Touch</span>
+                      <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
+                    </motion.button>
+                  </div>
+                </motion.div>
+              </>
+            )}
+          </AnimatePresence>
+        </div>
       </header>
 
-      <main className="w-full  py-15" id="home">
-        {/*
-          -- HERO PAGE
-        */}
-        <section className="max-w-7xl mx-auto flex justify-between items-center gap-20 ">
-          <Image
-            src="/hero-img.png"
-            height={500}
-            width={500}
-            alt="hero-image"
-          />
-
-          <div className="flex-1 space-y-5">
-            <h2 className="text-[24px] font-semibold">
-              Hi, I am <span className="text-[#F85F00]">Dazzle</span>
-            </h2>
-            <h1 className="text-[40px] font-bold">
-              UNLEASH YOUR WEBSITE’S POTENTIAL WITH THE BEST DESIGNER
-            </h1>
-            <div className="flex space-x-5 italic font-light">
-              <div className="">
-                <span className="text-[#F85F00]">1+</span> Years Experience
-              </div>
-              <div>
-                <span className="text-[#F85F00]">100%</span> Satisfaction
-              </div>
-              <div>
-                <span className="text-[#F85F00]">24/5</span> Customer Service
-              </div>
-            </div>
-            <div className="flex space-x-5">
-              <button className="group bg-[#F85F00] text-white text-md px-5 py-3 flex items-center gap-2 hover:cursor-pointer transition-all duration-300 transform hover:scale-105">
-                <FiDownload className="text-lg transform transition-transform duration-300 group-hover:translate-x-1" />
-                Download CV
-              </button>
-
-              <button className="group text-[#F85F00] border border-[#F85F00] text-md px-5 py-3 flex items-center gap-2 hover:cursor-pointer transition-all duration-300 transform hover:scale-105 hover:bg-[#F85F00] hover:text-white">
-                <FiArrowRight className="text-lg transform transition-transform duration-300 group-hover:translate-x-1" />
-                Learn More
-              </button>
-            </div>
-          </div>
-        </section>
-
-        {/*
-          -- TOOLS PAGE
-        */}
-        <section className="max-w-7xl mx-auto py-10">
-          <TechStack />
-        </section>
-
-        {/*
-          -- ABOUT PAGE
-        */}
+      <main className="w-full pt-20">
+        {/* Hero Section */}
         <section
-          className="max-w-7xl mx-auto  flex justify-between items-center gap-20 m-20  "
-          id="about"
+          id="home"
+          className="relative max-w-7xl mx-auto px-4 py-12 sm:py-16 md:py-20"
         >
-          <div className="space-y-5 ">
-            <h1 className="text-3xl font-bold">ABOUT</h1>
-            <p className="font-light leading-relaxed">
-              Hi! I’m Dazzle Estaciones, a 4th-year IT student at Holy Cross of
-              Davao College. I specialize in clean, user-friendly designs for
-              mobile apps and websites, and I enjoy writing clear documentation.
-            </p>
-            <p className="font-light leading-relaxed">
-              One of my proudest projects is our capstone, SMARTRAX: IoT-Enabled
-              Bike Rentals, where I focused on UI design and handled key
-              documents like proposals and user guides. I mainly work with Figma
-              and Google Docs to bring ideas to life and make systems easy to
-              understand.
-            </p>
+          {/* Background decorative elements */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute top-1/4 right-0 w-72 h-72 bg-orange-500/10 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-1/4 left-0 w-72 h-72 bg-orange-500/10 rounded-full blur-3xl"></div>
           </div>
 
-          <Image
-            src="/about.png"
-            height={500}
-            width={500}
-            alt="about-img"
-            className="flex-1"
-          />
-        </section>
+          <div className="relative flex flex-col-reverse md:flex-row items-center justify-between gap-12">
+            {/* Content Column */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="flex-1 space-y-8 text-center md:text-left"
+            >
+              <div className="space-y-4">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
+                  <span className="inline-block px-4 py-2 bg-orange-50 text-orange-500 rounded-full text-sm font-medium mb-4">
+                    👋 Welcome to my portfolio
+                  </span>
+                  <h2 className="text-xl sm:text-2xl font-semibold">
+                    Hi, I am <span className="text-orange-500">Dazzle</span>
+                  </h2>
+                </motion.div>
 
-        {/*
-          -- BACKGROUND PAGE
-        */}
-        <section
-          className="max-w-7xl mx-auto flex justify-between items-start gap-20 py-40"
-          id="background"
-        >
-          <div className="flex flex-col gap-20">
-            <h1 className="text-2xl font-bold mb-6 text-gray-800">EDUCATION</h1>
-            <div className="relative border-l-4 border-gray-300 pl-6 space-y-10">
-              {[
-                {
-                  school: "Holy Cross of Davao College",
-                  degree: "Bachelor of Science in Information Technology",
-                  duration: "2021 – Present",
-                },
-                {
-                  school: "Davao City National High School",
-                  degree: "Science, Technology, Engineering & Mathematics",
-                  duration: "2019 – 2021",
-                },
-                {
-                  school: "Sta. Ana National High School",
-                  degree: "Junior High School",
-                  duration: "2015 – 2019",
-                },
-              ].map((edu, index) => (
-                <div key={index} className="relative">
-                  {/* Bullet */}
-                  <div
-                    className={`absolute -left-3.5 top-1 w-6 h-6 rounded-full border-4 border-white shadow-md ${
-                      index === 0 ? "bg-orange-500" : "bg-black"
-                    }`}
-                  />
-                  <div className="ml-8">
-                    <h3 className="text-lg font-semibold text-gray-800">
-                      {edu.school}
-                    </h3>
-                    <p className="text-sm text-gray-600">{edu.degree}</p>
-                    <p className="text-xs text-gray-500 italic">
-                      {edu.duration}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="flex flex-col gap-20">
-            <h1 className="text-2xl font-bold mb-6 text-gray-800">
-              ACHIEVEMENTS
-            </h1>
-            <div className="relative border-l-4 border-gray-300 pl-6 space-y-10">
-              {[
-                {
-                  school: "Holy Cross of Davao College",
-                  degree: "Bachelor of Science in Information Technology",
-                  duration: "2021 – Present",
-                },
-                {
-                  school: "Davao City National High School",
-                  degree: "Science, Technology, Engineering & Mathematics",
-                  duration: "2019 – 2021",
-                },
-                {
-                  school: "Sta. Ana National High School",
-                  degree: "Junior High School",
-                  duration: "2015 – 2019",
-                },
-              ].map((edu, index) => (
-                <div key={index} className="relative">
-                  {/* Bullet */}
-                  <div
-                    className={`absolute -left-3.5 top-1 w-6 h-6 rounded-full border-4 border-white shadow-md ${
-                      index === 0 ? "bg-orange-500" : "bg-black"
-                    }`}
-                  />
-                  <div className="ml-8">
-                    <h3 className="text-lg font-semibold text-gray-800">
-                      {edu.school}
-                    </h3>
-                    <p className="text-sm text-gray-600">{edu.degree}</p>
-                    <p className="text-xs text-gray-500 italic">
-                      {edu.duration}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="flex flex-col gap-20">
-            <h1 className="text-2xl font-bold mb-6 text-gray-800">
-              EXPERIENCE
-            </h1>
-            <div className="relative border-l-4 border-gray-300 pl-6 space-y-10">
-              {[
-                {
-                  school: "Holy Cross of Davao College",
-                  degree: "Bachelor of Science in Information Technology",
-                  duration: "2021 – Present",
-                },
-                {
-                  school: "Davao City National High School",
-                  degree: "Science, Technology, Engineering & Mathematics",
-                  duration: "2019 – 2021",
-                },
-                {
-                  school: "Sta. Ana National High School",
-                  degree: "Junior High School",
-                  duration: "2015 – 2019",
-                },
-              ].map((edu, index) => (
-                <div key={index} className="relative">
-                  {/* Bullet */}
-                  <div
-                    className={`absolute -left-3.5 top-1 w-6 h-6 rounded-full border-4 border-white shadow-md ${
-                      index === 0 ? "bg-orange-500" : "bg-black"
-                    }`}
-                  />
-                  <div className="ml-8">
-                    <h3 className="text-lg font-semibold text-gray-800">
-                      {edu.school}
-                    </h3>
-                    <p className="text-sm text-gray-600">{edu.degree}</p>
-                    <p className="text-xs text-gray-500 italic">
-                      {edu.duration}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+                <motion.h1
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight"
+                >
+                  UNLEASH YOUR WEBSITE'S
+                  <span className="block text-orange-500">POTENTIAL</span>
+                  <span className="block text-2xl sm:text-3xl md:text-4xl mt-2 text-gray-600">
+                    with the best designer
+                  </span>
+                </motion.h1>
+              </div>
 
-        {/*
-          -- PROJECT PAGE
-        */}
-        <section className="max-w-7xl mx-auto py-40" id="projects">
-          <h1 className="text-3xl font-bold text-center">PROJECTS</h1>
-          <div className="grid grid-cols-3 grid-rows-2 gap-10 mt-20">
-            <div className="bg-white shadow-md w-[400px] h-[300px] flex flex-col border border-gray-200">
-              <img
-                src="/dazzle_plantita_project.png"
-                alt="Project Screenshot"
-                className="w-full h-[150px] object-cover"
-              />
-              <div className="p-4 flex flex-col justify-between flex-1">
-                <div>
-                  <h2 className="text-lg font-bold text-gray-800">
-                    Project Title
-                  </h2>
-                  <p className="text-sm text-gray-600 mt-2">
-                    Short project description that summarizes what the project
-                    is about.
-                  </p>
-                </div>
-                <a
-                  href="#"
-                  className="text-blue-600 text-sm mt-4 hover:underline font-medium"
-                >
-                  View Project →
-                </a>
-              </div>
-            </div>{" "}
-            <div className="bg-white shadow-md w-[400px] h-[300px] flex flex-col border border-gray-200">
-              <img
-                src="/hcdc_med_project.png"
-                alt="Project Screenshot"
-                className="w-full h-[150px] object-cover"
-              />
-              <div className="p-4 flex flex-col justify-between flex-1">
-                <div>
-                  <h2 className="text-lg font-bold text-gray-800">
-                    Project Title
-                  </h2>
-                  <p className="text-sm text-gray-600 mt-2">
-                    Short project description that summarizes what the project
-                    is about.
-                  </p>
-                </div>
-                <a
-                  href="#"
-                  className="text-blue-600 text-sm mt-4 hover:underline font-medium"
-                >
-                  View Project →
-                </a>
-              </div>
-            </div>{" "}
-            <div className="bg-white shadow-md w-[400px] h-[300px] flex flex-col border border-gray-200">
-              <img
-                src="/usermanual_project.png"
-                alt="Project Screenshot"
-                className="w-full h-[150px] object-cover"
-              />
-              <div className="p-4 flex flex-col justify-between flex-1">
-                <div>
-                  <h2 className="text-lg font-bold text-gray-800">
-                    Project Title
-                  </h2>
-                  <p className="text-sm text-gray-600 mt-2">
-                    Short project description that summarizes what the project
-                    is about.
-                  </p>
-                </div>
-                <a
-                  href="#"
-                  className="text-blue-600 text-sm mt-4 hover:underline font-medium"
-                >
-                  View Project →
-                </a>
-              </div>
-            </div>
-            <div className="bg-white shadow-md w-[400px] h-[300px] flex flex-col border border-gray-200">
-              <img
-                src="/dazsoul_project.png"
-                alt="Project Screenshot"
-                className="w-full h-[150px] object-cover"
-              />
-              <div className="p-4 flex flex-col justify-between flex-1">
-                <div>
-                  <h2 className="text-lg font-bold text-gray-800">
-                    Project Title
-                  </h2>
-                  <p className="text-sm text-gray-600 mt-2">
-                    Short project description that summarizes what the project
-                    is about.
-                  </p>
-                </div>
-                <a
-                  href="#"
-                  className="text-blue-600 text-sm mt-4 hover:underline font-medium"
-                >
-                  View Project →
-                </a>
-              </div>
-            </div>{" "}
-            <div className="bg-white shadow-md w-[400px] h-[300px] flex flex-col border border-gray-200 rounded-md">
-              <img
-                src="/calamity_alert_project.png"
-                alt="Project Screenshot"
-                className="w-full h-[150px] object-cover"
-              />
-              <div className="p-4 flex flex-col justify-between flex-1">
-                <div>
-                  <h2 className="text-lg font-bold text-gray-800">
-                    Calamity Alert
-                  </h2>
-                  <p className="text-sm text-gray-600 mt-2">
-                    Short project description that summarizes what the project
-                    is about.
-                  </p>
-                </div>
-                <a
-                  href="#"
-                  className="text-blue-600 text-sm mt-4 hover:underline font-medium"
-                >
-                  View Project →
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-        {/*
-          -- CONTACT PAGE
-        */}
-        <section
-          className="max-w-7xl mx-auto grid grid-cols-6 gap-20 p-20 md:p-20"
-          id="contact"
-        >
-          <div className="space-y-10 col-span-3">
-            <h1 className="text-4xl font-bold leading-relaxed">
-              Let’s connect and collaborate in the creative world of{" "}
-              <span className="text-[#F85F00]">UI/UX design</span>.
-            </h1>
-            <p className="text-gray-600 leading-relaxed">
-              Whether you have a project in mind or just want to say hello, I’d
-              love to hear from you.
-            </p>
-          </div>
-
-          <div className="col-span-3">
-            <form action="" className="space-y-6">
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Name
-                </label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  className="mt-1 block w-full rounded-md border border-gray-300 px-4 py-3 text-sm focus:border-[#F85F00] focus:ring-[#F85F00]"
-                  placeholder="Your name"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Email
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  className="mt-1 block w-full rounded-md border border-gray-300 px-4 py-3 text-sm focus:border-[#F85F00] focus:ring-[#F85F00]"
-                  placeholder="you@example.com"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={5}
-                  className="mt-1 block w-full rounded-md border border-gray-300 px-4 py-3 text-sm focus:border-[#F85F00] focus:ring-[#F85F00]"
-                  placeholder="Tell me more about your project or inquiry..."
-                />
-              </div>
-              <button
-                type="submit"
-                className="bg-[#F85F00] hover:bg-[#d94f00] w-full transition text-white font-semibold px-6 py-3"
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                className="flex flex-wrap justify-center md:justify-start gap-6"
               >
-                Submit
-              </button>
-            </form>
+                {[
+                  { number: "1+", text: "Years Experience" },
+                  { number: "100%", text: "Satisfaction" },
+                  { number: "24/5", text: "Customer Service" },
+                ].map((stat, index) => (
+                  <div key={index} className="group">
+                    <div className="flex flex-col items-center md:items-start">
+                      <span className="text-2xl font-bold text-orange-500 group-hover:scale-110 transition-transform duration-300">
+                        {stat.number}
+                      </span>
+                      <span className="text-sm text-gray-600">{stat.text}</span>
+                    </div>
+                  </div>
+                ))}
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+                className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
+              >
+                <a
+                  href="#"
+                  className="group bg-orange-500 text-white px-8 py-4 rounded-xl flex items-center justify-center gap-2 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-orange-500/25"
+                >
+                  <FiDownload className="text-lg group-hover:animate-bounce" />
+                  <span>Download CV</span>
+                </a>
+                <a
+                  href="#projects"
+                  className="group border-2 border-orange-500 text-orange-500 px-8 py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-orange-500 hover:text-white transition-all duration-300"
+                >
+                  <span>View Projects</span>
+                  <FiArrowRight className="text-lg transition-transform duration-300 group-hover:translate-x-1" />
+                </a>
+              </motion.div>
+            </motion.div>
+
+            {/* Image Column */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="flex-1 relative"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full blur-3xl opacity-20 scale-95"></div>
+              <div className="relative">
+                <div className="absolute -inset-4 border-2 border-orange-500/20 rounded-3xl transform rotate-6"></div>
+                <div className="relative overflow-hidden rounded-3xl bg-white shadow-2xl">
+                  <Image
+                    src="/hero-img.png"
+                    height={600}
+                    width={600}
+                    alt="Dazzle - UI/UX Designer"
+                    priority
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm p-4 rounded-xl shadow-lg">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-full bg-orange-500/20 flex items-center justify-center">
+                        <span className="text-2xl">💻</span>
+                      </div>
+                      <div>
+                        <p className="font-semibold">UI/UX Designer</p>
+                        <p className="text-sm text-gray-600">
+                          Available for projects
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </section>
-        {/*
-          -- CERTIFICATES PAGE
-        */}
-        <section className="max-w-7xl mx-auto py-40" id="certifications">
-          <h1 className="text-3xl font-bold text-center">CERTIFICATES</h1>
-          <Carousel className="mt-20">
+
+        {/* Tech Stack */}
+        <TechStack />
+
+        {/* About Section */}
+        <section
+          id="about"
+          className="relative max-w-7xl mx-auto px-4 py-20 sm:py-24"
+        >
+          {/* Background decoration */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute -right-10 top-1/3 w-72 h-72 bg-orange-500/10 rounded-full blur-3xl"></div>
+            <div className="absolute -left-10 bottom-1/3 w-72 h-72 bg-orange-500/10 rounded-full blur-3xl"></div>
+          </div>
+
+          <div className="relative grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            {/* Image Column */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="order-2 md:order-1"
+            >
+              <div className="relative">
+                <div className="absolute inset-0 bg-orange-500/20 rounded-3xl transform rotate-6 scale-95"></div>
+                <div className="relative overflow-hidden rounded-3xl">
+                  <Image
+                    src="/about.png"
+                    height={600}
+                    width={600}
+                    alt="About Dazzle"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-2xl shadow-xl">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-full bg-orange-500/20 flex items-center justify-center">
+                      <span className="text-2xl">💡</span>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold">Creative Designer</p>
+                      <p className="text-xs text-gray-500">UI/UX Specialist</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Content Column */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="order-1 md:order-2 space-y-8"
+            >
+              <div className="space-y-4">
+                <h2 className="text-sm font-semibold text-orange-500 tracking-wider uppercase">
+                  About Me
+                </h2>
+                <h1 className="text-3xl sm:text-4xl font-bold leading-tight">
+                  Crafting Digital Experiences with Passion & Purpose
+                </h1>
+              </div>
+
+              <div className="space-y-6 text-gray-600">
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  className="leading-relaxed"
+                >
+                  Hi! I'm Dazzle Estaciones, a 4th-year IT student at Holy Cross
+                  of Davao College. I specialize in creating clean,
+                  user-friendly designs for mobile apps and websites, with a
+                  keen eye for detail and documentation.
+                </motion.p>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  className="leading-relaxed"
+                >
+                  One of my proudest achievements is our capstone project,
+                  SMARTRAX: IoT-Enabled Bike Rentals, where I led the UI design
+                  and documentation efforts.
+                </motion.p>
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
+                {[
+                  { number: "2+", label: "Years Experience" },
+                  { number: "15+", label: "Projects Completed" },
+                  { number: "100%", label: "Client Satisfaction" },
+                ].map((stat, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                    className="text-center p-4 rounded-2xl bg-white shadow-lg hover:shadow-xl transition-shadow"
+                  >
+                    <h3 className="text-2xl font-bold text-orange-500">
+                      {stat.number}
+                    </h3>
+                    <p className="text-sm text-gray-600 mt-1">{stat.label}</p>
+                  </motion.div>
+                ))}
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.7 }}
+                className="flex flex-wrap gap-4"
+              >
+                <a
+                  href="#projects"
+                  className="inline-flex items-center gap-2 bg-orange-500 text-white px-6 py-3 rounded-xl hover:bg-orange-600 transition-colors duration-300"
+                >
+                  View Projects
+                  <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
+                </a>
+                <a
+                  href="#contact"
+                  className="inline-flex items-center gap-2 border-2 border-orange-500 text-orange-500 px-6 py-3 rounded-xl hover:bg-orange-500 hover:text-white transition-all duration-300"
+                >
+                  Contact Me
+                  <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
+                </a>
+              </motion.div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Background Section */}
+        <section
+          id="background"
+          className="max-w-7xl mx-auto px-4 py-16 sm:py-20 md:py-24"
+        >
+          <div className="text-center space-y-4 mb-16">
+            <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-orange-500 to-orange-700 bg-clip-text text-transparent">
+              BACKGROUND
+            </h1>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              My educational journey and professional experiences that shape who
+              I am today
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+            {timelineData.map((section, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-2xl p-6 hover:shadow-xl transition-all duration-300"
+              >
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="w-12 h-12 rounded-xl  flex items-center justify-center">
+                    <span className="text-white text-xl">
+                      {section.type === "Education"
+                        ? "🎓"
+                        : section.type === "Experience"
+                        ? "💼"
+                        : "🏆"}
+                    </span>
+                  </div>
+                  <h2 className="text-2xl font-bold text-gray-800">
+                    {section.type}
+                  </h2>
+                </div>
+
+                <div className="relative">
+                  {section.items.map((item, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3, delay: i * 0.1 }}
+                      viewport={{ once: true }}
+                      className="group relative pl-8 pb-8 last:pb-0"
+                    >
+                      <div className="absolute left-0 top-2 -ml-[6px]">
+                        <div
+                          className={`w-3 h-3 rounded-full border-2 border-white shadow-md ${
+                            i === 0 ? "bg-orange-500" : "bg-gray-700"
+                          } group-hover:scale-125 group-hover:bg-orange-500 transition-all duration-300`}
+                        />
+                        {i !== section.items.length - 1 && (
+                          <div className="absolute top-3 left-[5px] w-[2px] h-full bg-gray-200 group-hover:bg-orange-200 transition-colors duration-300" />
+                        )}
+                      </div>
+
+                      <div className="transform transition-all duration-300 hover:translate-x-2">
+                        <h3 className="text-lg font-semibold text-gray-800 group-hover:text-orange-500 transition-colors duration-300">
+                          {item.school}
+                        </h3>
+                        <p className="text-gray-600 mt-1">{item.degree}</p>
+                        <div className="flex items-center gap-2 mt-2">
+                          <svg
+                            className="w-4 h-4 text-orange-500"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                            />
+                          </svg>
+                          <span className="text-sm text-gray-500">
+                            {item.duration}
+                          </span>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* Projects Section */}
+        <section
+          id="projects"
+          className="max-w-7xl mx-auto px-4 py-12 sm:py-16 bg-gray-50"
+        >
+          <div className="text-center space-y-4 mb-16">
+            <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-orange-500 to-orange-700 bg-clip-text text-transparent">
+              PROJECTS
+            </h1>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Explore my latest works and creative endeavors in UI/UX design and
+              web development.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((project, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="group bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+              >
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={`${project.title} Screenshot`}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center">
+                    <button className="opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 bg-orange-500 text-white px-6 py-2 rounded-full font-medium text-sm hover:bg-orange-600">
+                      View Details
+                    </button>
+                  </div>
+                </div>
+                <div className="p-6 space-y-4">
+                  <h2 className="text-xl font-bold text-gray-800 group-hover:text-orange-500 transition-colors duration-300">
+                    {project.title}
+                  </h2>
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    {project.description}
+                  </p>
+                  <div className="pt-4 flex items-center justify-between">
+                    <div className="flex gap-2">
+                      <span className="px-3 py-1 text-xs font-medium bg-orange-100 text-orange-600 rounded-full">
+                        UI/UX
+                      </span>
+                      <span className="px-3 py-1 text-xs font-medium bg-blue-100 text-blue-600 rounded-full">
+                        Web
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* Contact Section */}
+        <section id="contact" className="relative py-20 overflow-hidden">
+          {/* Background decoration */}
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-slate-50"></div>
+            <div className="absolute right-0 bottom-0 w-1/3 h-1/3">
+              <svg
+                viewBox="0 0 200 200"
+                className="w-full h-full text-orange-500/10"
+              >
+                <path
+                  fill="currentColor"
+                  d="M37.5,-64.1C48.2,-56.6,56.1,-44.6,63.3,-31.5C70.4,-18.4,76.8,-4.2,75.2,9.2C73.6,22.6,64,35.2,52.9,44.6C41.8,53.9,29.2,60,15.6,63.5C2,67,-12.6,67.8,-25.5,63.6C-38.4,59.3,-49.6,50,-57.7,38.3C-65.8,26.6,-70.8,12.5,-70.9,-1.7C-71,-16,-66.2,-30.3,-57.5,-41.2C-48.7,-52.1,-36.1,-59.6,-23.8,-66C-11.6,-72.3,0.3,-77.5,12.3,-76.4C24.4,-75.4,36.5,-68.1,37.5,-64.1Z"
+                  transform="translate(100 100)"
+                />
+              </svg>
+            </div>
+            <div className="absolute left-0 top-0 w-1/3 h-1/3 transform rotate-180">
+              <svg
+                viewBox="0 0 200 200"
+                className="w-full h-full text-orange-500/10"
+              >
+                <path
+                  fill="currentColor"
+                  d="M37.5,-64.1C48.2,-56.6,56.1,-44.6,63.3,-31.5C70.4,-18.4,76.8,-4.2,75.2,9.2C73.6,22.6,64,35.2,52.9,44.6C41.8,53.9,29.2,60,15.6,63.5C2,67,-12.6,67.8,-25.5,63.6C-38.4,59.3,-49.6,50,-57.7,38.3C-65.8,26.6,-70.8,12.5,-70.9,-1.7C-71,-16,-66.2,-30.3,-57.5,-41.2C-48.7,-52.1,-36.1,-59.6,-23.8,-66C-11.6,-72.3,0.3,-77.5,12.3,-76.4C24.4,-75.4,36.5,-68.1,37.5,-64.1Z"
+                  transform="translate(100 100)"
+                />
+              </svg>
+            </div>
+          </div>
+
+          <div className="relative max-w-7xl mx-auto px-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              {/* Contact Information */}
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="space-y-8"
+              >
+                <div className="space-y-4">
+                  <span className="text-sm font-semibold text-orange-500 tracking-wider uppercase">
+                    Get in Touch
+                  </span>
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
+                    Let's Build Something
+                    <span className="block text-orange-500">
+                      Amazing Together
+                    </span>
+                  </h1>
+                  <p className="text-gray-600 max-w-lg">
+                    Ready to transform your ideas into reality? I'm here to help
+                    bring your vision to life with creative solutions and
+                    exceptional design.
+                  </p>
+                </div>
+
+                <div className="space-y-6">
+                  {[
+                    {
+                      icon: (
+                        <svg
+                          className="w-6 h-6"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                          />
+                        </svg>
+                      ),
+                      title: "Email",
+                      value: "contact@dazzle.dev",
+                      link: "mailto:contact@dazzle.dev",
+                    },
+                    {
+                      icon: (
+                        <svg
+                          className="w-6 h-6"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                          />
+                        </svg>
+                      ),
+                      title: "Phone",
+                      value: "+63 912 345 6789",
+                      link: "tel:+639123456789",
+                    },
+                    {
+                      icon: (
+                        <svg
+                          className="w-6 h-6"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                          />
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                          />
+                        </svg>
+                      ),
+                      title: "Location",
+                      value: "Davao City, Philippines",
+                      link: "#",
+                    },
+                  ].map((item, index) => (
+                    <motion.a
+                      key={index}
+                      href={item.link}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                      className="flex items-center gap-4 p-4 rounded-xl hover:bg-white hover:shadow-xl transition-all duration-300 group"
+                    >
+                      <div className="w-12 h-12 rounded-full bg-orange-100 text-orange-500 flex items-center justify-center group-hover:bg-orange-500 group-hover:text-white transition-colors duration-300">
+                        {item.icon}
+                      </div>
+                      <div>
+                        <h3 className="font-medium text-gray-900">
+                          {item.title}
+                        </h3>
+                        <p className="text-gray-600">{item.value}</p>
+                      </div>
+                    </motion.a>
+                  ))}
+                </div>
+
+                <div className="flex gap-4">
+                  {[
+                    {
+                      icon: (
+                        <svg
+                          className="w-5 h-5"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.69c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.33.85 0 1.7.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48C19.14 20.17 22 16.42 22 12c0-5.523-4.477-10-10-10z" />
+                        </svg>
+                      ),
+                      label: "GitHub",
+                    },
+                    {
+                      icon: (
+                        <svg
+                          className="w-5 h-5"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M22.23 5.924a8.212 8.212 0 01-2.357.646 4.115 4.115 0 001.804-2.27 8.221 8.221 0 01-2.606.996 4.103 4.103 0 00-6.991 3.742 11.65 11.65 0 01-8.457-4.287 4.083 4.083 0 00-.556 2.063 4.1 4.1 0 001.825 3.415 4.09 4.09 0 01-1.859-.513v.052a4.104 4.104 0 003.292 4.023 4.099 4.099 0 01-1.853.07 4.11 4.11 0 003.833 2.85A8.236 8.236 0 012 18.407a11.616 11.616 0 006.29 1.84c7.547 0 11.675-6.25 11.675-11.675 0-.178-.004-.355-.012-.531A8.322 8.322 0 0022.23 5.924z" />
+                        </svg>
+                      ),
+                      label: "Twitter",
+                    },
+                    {
+                      icon: (
+                        <svg
+                          className="w-5 h-5"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                        </svg>
+                      ),
+                      label: "LinkedIn",
+                    },
+                  ].map((item, index) => (
+                    <motion.a
+                      key={index}
+                      href="#"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.3, delay: 0.8 + index * 0.1 }}
+                      viewport={{ once: true }}
+                      className="w-12 h-12 bg-white shadow-md rounded-full flex items-center justify-center text-gray-600 hover:text-orange-500 hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
+                      aria-label={item.label}
+                    >
+                      {item.icon}
+                    </motion.a>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Contact Form */}
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="relative"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-orange-600 transform rotate-3 rounded-3xl opacity-10"></div>
+                <div className="relative bg-white shadow-xl rounded-3xl p-8">
+                  <form className="space-y-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label
+                          htmlFor="name"
+                          className="text-sm font-medium text-gray-700"
+                        >
+                          Full Name
+                        </label>
+                        <input
+                          type="text"
+                          id="name"
+                          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all duration-300"
+                          placeholder="John Doe"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label
+                          htmlFor="email"
+                          className="text-sm font-medium text-gray-700"
+                        >
+                          Email Address
+                        </label>
+                        <input
+                          type="email"
+                          id="email"
+                          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all duration-300"
+                          placeholder="john@example.com"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="subject"
+                        className="text-sm font-medium text-gray-700"
+                      >
+                        Subject
+                      </label>
+                      <input
+                        type="text"
+                        id="subject"
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all duration-300"
+                        placeholder="Project Discussion"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="message"
+                        className="text-sm font-medium text-gray-700"
+                      >
+                        Message
+                      </label>
+                      <textarea
+                        id="message"
+                        rows={5}
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all duration-300"
+                        placeholder="Tell me about your project..."
+                      />
+                    </div>
+
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      type="submit"
+                      className="w-full bg-orange-500 text-white font-medium px-8 py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-orange-600 transition-colors duration-300"
+                    >
+                      Send Message
+                      <FiSend className="text-lg" />
+                    </motion.button>
+                  </form>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Certificates Section */}
+        <section
+          id="certifications"
+          className="w-full mx-auto px-4 py-16 sm:py-20"
+        >
+          <div className="text-center space-y-4 mb-16">
+            <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-orange-500 to-orange-700 bg-clip-text text-transparent">
+              CERTIFICATIONS
+            </h1>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Professional certifications and achievements that validate my
+              expertise
+            </p>
+          </div>
+
+          <Carousel className="w-full max-w-7xl mx-auto">
             <CarouselContent>
-              <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-                <div className="bg-white h-[300px] w-[400px]">
-                  {" "}
-                  <Image
-                    src="/COA.jpg"
-                    alt="certificate"
-                    height={300}
-                    width={400}
-                  />
-                </div>
-              </CarouselItem>
-              <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-                <div className="bg-white h-[300px] w-[400px]">
-                  {" "}
-                  <Image
-                    src="/COP.jpg"
-                    alt="certificate"
-                    height={300}
-                    width={400}
-                  />
-                </div>
-              </CarouselItem>
-              <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-                <div className="bg-white h-[300px] w-[400px]">
-                  {" "}
-                  <Image
-                    src="/MCITS.jpg"
-                    alt="certificate"
-                    height={300}
-                    width={400}
-                  />
-                </div>
-              </CarouselItem>{" "}
-              <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-                <div className="bg-white h-[300px] w-[400px]">
-                  {" "}
-                  <Image
-                    src="/UIUX.jpg"
-                    alt="certificate"
-                    height={300}
-                    width={400}
-                  />
-                </div>
-              </CarouselItem>{" "}
-              <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-                <div className="bg-white h-[300px] w-[400px]">
-                  <Image
-                    src="/COA.jpg"
-                    alt="certificate"
-                    height={300}
-                    width={400}
-                  />
-                </div>
-              </CarouselItem>{" "}
-              <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-                <div className="bg-white h-[300px] w-[400px]">
-                  {" "}
-                  <Image
-                    src="/COA.jpg"
-                    alt="certificate"
-                    height={300}
-                    width={400}
-                  />
-                </div>
-              </CarouselItem>
-            </CarouselContent>{" "}
-            <CarouselPrevious />
-            <CarouselNext />
+              {certificates.map((cert, index) => (
+                <CarouselItem
+                  key={index}
+                  className="basis-full sm:basis-1/2 lg:basis-1/3 p-2"
+                >
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5 }}
+                    className="relative group"
+                  >
+                    <div className="relative h-[300px] w-full overflow-hidden rounded-xl bg-white shadow-lg">
+                      <Image
+                        src={cert}
+                        alt={`Certificate ${index + 1}`}
+                        height={300}
+                        width={400}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-6">
+                        <button className="bg-orange-500 text-white px-6 py-2 rounded-full text-sm font-medium transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                          View Certificate
+                        </button>
+                      </div>
+                    </div>
+                  </motion.div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="hidden sm:flex">
+              <CarouselPrevious className="hover:bg-orange-500 hover:text-white transition-colors" />
+              <CarouselNext className="hover:bg-orange-500 hover:text-white transition-colors" />
+            </div>
           </Carousel>
         </section>
 
-        <section className="w-full bg-slate-800 p-30">
-          <div className="max-w-7xl mx-auto  text-white flex flex-col justify-center items-center space-y-5 ">
-            <h2 className="text-4xl font-bold text-white leading-snug">
-              Ready to bring your ideas to life?
-            </h2>
-            <p className="text-white text-lg">
-              Let’s build something amazing together. Whether you're starting a
-              new project or need a design revamp, I’m here to help you make an
-              impact.
-            </p>{" "}
-            <a
-              href="#contact"
-              className="bg-[#F85F00] hover:bg-[#d94f00] transition text-white font-semibold rounded-xl px-8 py-4 text-lg"
-            >
-              Let’s Talk
-            </a>
+        {/* Call to Action */}
+        <section className="relative w-full py-20 overflow-hidden">
+          <div className="absolute inset-0 bg-slate-800">
+            <div className="absolute inset-0 bg-[url('/globe.svg')] opacity-10"></div>
           </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="relative max-w-7xl mx-auto px-4 flex flex-col lg:flex-row items-center justify-between gap-12"
+          >
+            <div className="flex-1 text-center lg:text-left space-y-6">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight">
+                Ready to Transform Your
+                <span className="block text-orange-500">Digital Presence?</span>
+              </h2>
+              <p className="text-gray-300 max-w-2xl mx-auto lg:mx-0">
+                Let's collaborate to create exceptional user experiences that
+                drive results. From concept to completion, I'm here to help you
+                succeed in the digital world.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <a
+                  href="#contact"
+                  className="group bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-4 rounded-xl inline-flex items-center justify-center gap-2 transition-all duration-300 hover:scale-105"
+                >
+                  Start a Project
+                  <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
+                </a>
+                <a
+                  href="#projects"
+                  className="group bg-transparent border-2 border-white/20 hover:border-orange-500 text-white font-semibold px-8 py-4 rounded-xl inline-flex items-center justify-center gap-2 transition-all duration-300 hover:scale-105"
+                >
+                  View Portfolio
+                  <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
+                </a>
+              </div>
+            </div>
+            <div className="hidden lg:block flex-1">
+              <Image
+                src="/window.svg"
+                alt="Design Window"
+                width={500}
+                height={400}
+                className="w-full max-w-[500px] mx-auto opacity-90"
+              />
+            </div>
+          </motion.div>
         </section>
-        <footer className="w-full bg-white  h-[300px]"></footer>
+
+        {/* Footer */}
+        <footer className="w-full bg-slate-800 text-white py-12">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+              {/* Brand Section */}
+              <div className="space-y-4">
+                <h3 className="text-xl font-bold">Dazzle</h3>
+                <p className="text-sm text-gray-300">
+                  Transforming ideas into beautiful digital experiences through
+                  innovative UI/UX design.
+                </p>
+                <div className="flex space-x-4">
+                  {[
+                    {
+                      icon: (
+                        <svg
+                          className="w-5 h-5"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.69c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.33.85 0 1.7.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48C19.14 20.17 22 16.42 22 12c0-5.523-4.477-10-10-10z" />
+                        </svg>
+                      ),
+                      label: "GitHub",
+                    },
+                    {
+                      icon: (
+                        <svg
+                          className="w-5 h-5"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M22.23 5.924a8.212 8.212 0 01-2.357.646 4.115 4.115 0 001.804-2.27 8.221 8.221 0 01-2.606.996 4.103 4.103 0 00-6.991 3.742 11.65 11.65 0 01-8.457-4.287 4.083 4.083 0 00-.556 2.063 4.1 4.1 0 001.825 3.415 4.09 4.09 0 01-1.859-.513v.052a4.104 4.104 0 003.292 4.023 4.099 4.099 0 01-1.853.07 4.11 4.11 0 003.833 2.85A8.236 8.236 0 012 18.407a11.616 11.616 0 006.29 1.84c7.547 0 11.675-6.25 11.675-11.675 0-.178-.004-.355-.012-.531A8.322 8.322 0 0022.23 5.924z" />
+                        </svg>
+                      ),
+                      label: "Twitter",
+                    },
+                    {
+                      icon: (
+                        <svg
+                          className="w-5 h-5"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                        </svg>
+                      ),
+                      label: "LinkedIn",
+                    },
+                  ].map((item, index) => (
+                    <a
+                      key={index}
+                      href="#"
+                      className="text-gray-300 hover:text-orange-500 transition"
+                      aria-label={item.label}
+                    >
+                      {item.icon}
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              {/* Quick Links */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold">Quick Links</h3>
+                <ul className="space-y-2">
+                  {["Home", "About", "Background", "Projects", "Contact"].map(
+                    (item) => (
+                      <li key={item}>
+                        <a
+                          href={`#${item.toLowerCase()}`}
+                          className="text-gray-300 hover:text-orange-500 transition text-sm"
+                        >
+                          {item}
+                        </a>
+                      </li>
+                    )
+                  )}
+                </ul>
+              </div>
+
+              {/* Services */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold">Services</h3>
+                <ul className="space-y-2">
+                  {[
+                    "UI/UX Design",
+                    "Web Development",
+                    "Mobile App Design",
+                    "Documentation",
+                    "Consulting",
+                  ].map((service) => (
+                    <li key={service}>
+                      <a
+                        href="#contact"
+                        className="text-gray-300 hover:text-orange-500 transition text-sm"
+                      >
+                        {service}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Contact Info */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold">Contact Info</h3>
+                <ul className="space-y-2">
+                  <li className="text-gray-300 text-sm flex items-center space-x-2">
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                      />
+                    </svg>
+                    <span>contact@dazzle.dev</span>
+                  </li>
+                  <li className="text-gray-300 text-sm flex items-center space-x-2">
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                      />
+                    </svg>
+                    <span>+63 912 345 6789</span>
+                  </li>
+                  <li className="text-gray-300 text-sm flex items-center space-x-2">
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
+                    </svg>
+                    <span>Davao City, Philippines</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Bottom Bar */}
+            <div className="mt-12 pt-8 border-t border-gray-700">
+              <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                <p className="text-sm text-gray-300">
+                  &copy; {new Date().getFullYear()} Dazzle Estaciones. All
+                  rights reserved.
+                </p>
+                <div className="flex space-x-6">
+                  <a
+                    href="#"
+                    className="text-sm text-gray-300 hover:text-orange-500 transition"
+                  >
+                    Privacy Policy
+                  </a>
+                  <a
+                    href="#"
+                    className="text-sm text-gray-300 hover:text-orange-500 transition"
+                  >
+                    Terms of Service
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
       </main>
     </>
   );
