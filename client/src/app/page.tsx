@@ -1121,6 +1121,7 @@ const Home = () => {
                         </svg>
                       ),
                       label: "GitHub",
+                      link: "https://github.com/Dazzle0101",
                     },
                     {
                       icon: (
@@ -1133,6 +1134,7 @@ const Home = () => {
                         </svg>
                       ),
                       label: "Twitter",
+                      link: "https://www.linkedin.com/in/dazzle-estaciones-5a61121b7/",
                     },
                     {
                       icon: (
@@ -1145,11 +1147,12 @@ const Home = () => {
                         </svg>
                       ),
                       label: "LinkedIn",
+                      link: "https://www.linkedin.com/in/dazzle-estaciones-5a61121b7/",
                     },
-                  ].map((item, index) => (
+                  ].map((item: any, index: number) => (
                     <a
                       key={index}
-                      href="#"
+                      href={item.link}
                       className="text-gray-300 hover:text-orange-500 transition"
                       aria-label={item.label}
                     >
