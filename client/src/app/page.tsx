@@ -11,6 +11,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { TechStack } from "@/components/tech-stack";
+import { link } from "fs";
 const Home = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -39,14 +40,19 @@ const Home = () => {
           duration: "2021 – Present",
         },
         {
-          school: "Davao City National High School",
-          degree: "Science, Technology, Engineering & Mathematics",
-          duration: "2019 – 2021",
+          school: "Sta Ana. Senior High School",
+          degree: "General Academic Strand",
+          duration: "2018 – 2020",
         },
         {
           school: "Sta. Ana National High School",
           degree: "Junior High School",
-          duration: "2015 – 2019",
+          duration: "2014 – 2018",
+        },
+        {
+          school: "Sta. Ana Elementary School",
+          degree: "Junior High School",
+          duration: "2008 – 2014",
         },
       ],
     },
@@ -54,18 +60,23 @@ const Home = () => {
       type: "Achievements",
       items: [
         {
-          school: "UI/UX Design Certification",
-          degree: "Completed Course",
-          duration: "2023",
+          school: "Hongkong 5th International Conference Paper Presentation.",
+          degree: "Paper Presentation",
+          duration: "2025",
         },
         {
-          school: "Capstone Project Award",
-          degree: "SMARTRAX Recognition",
+          school: "4th place Battle of the bands",
+          degree: "Recognition",
           duration: "2024",
         },
         {
-          school: "Hackathon Participant",
-          degree: "Tech Innovation",
+          school: "7th place cheerdance competition",
+          degree: "Recognition",
+          duration: "2022",
+        },
+        {
+          school: "1st place COD-M",
+          degree: "Recognition",
           duration: "2022",
         },
       ],
@@ -84,9 +95,14 @@ const Home = () => {
           duration: "2023 – 2024",
         },
         {
-          school: "Internship",
-          degree: "Web Development Assistant",
-          duration: "2022",
+          school: "Set Up Computer Networks",
+          degree: "Networking",
+          duration: "2016 – 2017",
+        },
+        {
+          school: "Jairosoft",
+          degree: "Intern",
+          duration: "2025",
         },
       ],
     },
@@ -127,7 +143,7 @@ const Home = () => {
     "/COP.jpg",
     "/MCITS.jpg",
     "/UIUX.jpg",
-    "/COA.jpg",
+    "/COC Security.jpg",
     "/COA.jpg",
   ];
 
@@ -312,7 +328,7 @@ const Home = () => {
                     👋 Welcome to my portfolio
                   </span>
                   <h2 className="text-xl sm:text-2xl font-semibold">
-                    Hi, I am <span className="text-orange-500">Dazzle</span>
+                    Hi, I am <span className="text-orange-500">Dazzles</span>
                   </h2>
                 </motion.div>
 
@@ -779,8 +795,8 @@ const Home = () => {
                         </svg>
                       ),
                       title: "Email",
-                      value: "contact@dazzle.dev",
-                      link: "mailto:contact@dazzle.dev",
+                      value: "dazzestaciones@gmail.com",
+                      link: "https://mail.google.com/mail/u/0/#inbox",
                     },
                     {
                       icon: (
@@ -800,7 +816,7 @@ const Home = () => {
                       ),
                       title: "Phone",
                       value: "+63 912 345 6789",
-                      link: "tel:+639123456789",
+                      link: "#",
                     },
                     {
                       icon: (
@@ -864,6 +880,7 @@ const Home = () => {
                         </svg>
                       ),
                       label: "GitHub",
+                      link: "https://github.com/Dazzle0101",
                     },
                     {
                       icon: (
@@ -875,7 +892,8 @@ const Home = () => {
                           <path d="M22.23 5.924a8.212 8.212 0 01-2.357.646 4.115 4.115 0 001.804-2.27 8.221 8.221 0 01-2.606.996 4.103 4.103 0 00-6.991 3.742 11.65 11.65 0 01-8.457-4.287 4.083 4.083 0 00-.556 2.063 4.1 4.1 0 001.825 3.415 4.09 4.09 0 01-1.859-.513v.052a4.104 4.104 0 003.292 4.023 4.099 4.099 0 01-1.853.07 4.11 4.11 0 003.833 2.85A8.236 8.236 0 012 18.407a11.616 11.616 0 006.29 1.84c7.547 0 11.675-6.25 11.675-11.675 0-.178-.004-.355-.012-.531A8.322 8.322 0 0022.23 5.924z" />
                         </svg>
                       ),
-                      label: "Twitter",
+                      label: "Facebook",
+                      link: "https://www.facebook.com/jazzestaciones"
                     },
                     {
                       icon: (
@@ -888,6 +906,7 @@ const Home = () => {
                         </svg>
                       ),
                       label: "LinkedIn",
+                      link:"https://www.linkedin.com/in/dazzle-estaciones-5a61121b7/"
                     },
                   ].map((item, index) => (
                     <motion.a
