@@ -748,7 +748,7 @@ const Home = () => {
               </svg>
             </div>
           </div>
-
+          {/* Contact Column */}
           <div className="relative max-w-7xl mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               {/* Contact Information */}
@@ -911,7 +911,7 @@ const Home = () => {
                   ].map((item, index) => (
                     <motion.a
                       key={index}
-                      href="#"
+                      href={item.link}
                       initial={{ opacity: 0, scale: 0.8 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.3, delay: 0.8 + index * 0.1 }}
