@@ -124,7 +124,8 @@ const Home = () => {
     {
       title: "User Manual",
       image: "/usermanual_project.png",
-      description: "A brief guide to navigating the ColinaHealth website, covering account setup, booking appointments, viewing health records, and using key features with ease.",
+      description:
+        "A brief guide to navigating the ColinaHealth website, covering account setup, booking appointments, viewing health records, and using key features with ease.",
     },
     {
       title: "Dazsoul",
@@ -139,7 +140,8 @@ const Home = () => {
     {
       title: "SmarTrax",
       image: "/SmarTrax.jpg",
-      description: "A capstone project on a smart bike and e-bike rental app enabling users to locate, unlock via QR scan, and rent bikes. Features include ride history, wallet tracking, real-time GPS, Firebase authentication, and a mobile-friendly UI.",
+      description:
+        "A capstone project on a smart bike and e-bike rental app enabling users to locate, unlock via QR scan, and rent bikes. Features include ride history, wallet tracking, real-time GPS, Firebase authentication, and a mobile-friendly UI.",
     },
   ];
 
