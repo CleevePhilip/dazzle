@@ -85,9 +85,9 @@ const Home = () => {
       type: "Experience",
       items: [
         {
-          school: "Freelance UI Designer",
-          degree: "Designed 5+ client websites",
-          duration: "2022 – Present",
+          school: "Jairosoft",
+          degree: "Intern",
+          duration: "2025",
         },
         {
           school: "SMARTRAX Capstone",
@@ -95,14 +95,14 @@ const Home = () => {
           duration: "2023 – 2024",
         },
         {
+          school: "Freelance UI Designer",
+          degree: "Designed 5+ client websites",
+          duration: "2022 – Present",
+        },
+        {
           school: "Set Up Computer Networks",
           degree: "Networking",
           duration: "2016 – 2017",
-        },
-        {
-          school: "Jairosoft",
-          degree: "Intern",
-          duration: "2025",
         },
       ],
     },
@@ -113,18 +113,18 @@ const Home = () => {
       title: "Plantita Project",
       image: "/dazzle_plantita_project.png",
       description:
-        "A mobile app for plant care with real-time monitoring and tips.",
+        "A mobile app design for plant lovers, allowing users to browse top-rated plants and place orders easily through a clean, intuitive interface.",
     },
     {
-      title: "HCDC Med",
+      title: "HCDC Medical Clinic",
       image: "/hcdc_med_project.png",
       description:
-        "A medical appointment booking system with user-friendly UI.",
+        "A user-friendly platform for accessing HCDC Medical Clinic services, including appointment booking, medical record viewing, clinic updates, and health information for students and staff.",
     },
     {
       title: "User Manual",
       image: "/usermanual_project.png",
-      description: "Interactive user guide for a software application.",
+      description: "A brief guide to navigating the ColinaHealth website, covering account setup, booking appointments, viewing health records, and using key features with ease.",
     },
     {
       title: "Dazsoul",
@@ -136,6 +136,11 @@ const Home = () => {
       image: "/calamity_alert_project.png",
       description: "Real-time alert system for natural disasters.",
     },
+    {
+      title: "SmarTrax",
+      image: "/SmarTrax.jpg",
+      description: "A capstone project on a smart bike and e-bike rental app enabling users to locate, unlock via QR scan, and rent bikes. Features include ride history, wallet tracking, real-time GPS, Firebase authentication, and a mobile-friendly UI.",
+    },
   ];
 
   const certificates = [
@@ -144,7 +149,7 @@ const Home = () => {
     "/MCITS.jpg",
     "/UIUX.jpg",
     "/COC Security.jpg",
-    "/COA.jpg",
+    "/Intro to UI_UX cert_.jpg",
   ];
 
   return (
@@ -519,7 +524,7 @@ const Home = () => {
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
                 {[
                   { number: "2+", label: "Years Experience" },
-                  { number: "15+", label: "Projects Completed" },
+                  { number: "10+", label: "Projects Completed" },
                   { number: "100%", label: "Client Satisfaction" },
                 ].map((stat, index) => (
                   <motion.div
@@ -1142,11 +1147,11 @@ const Home = () => {
                           fill="currentColor"
                           viewBox="0 0 24 24"
                         >
-                          <path d="M22.23 5.924a8.212 8.212 0 01-2.357.646 4.115 4.115 0 001.804-2.27 8.221 8.221 0 01-2.606.996 4.103 4.103 0 00-6.991 3.742 11.65 11.65 0 01-8.457-4.287 4.083 4.083 0 00-.556 2.063 4.1 4.1 0 001.825 3.415 4.09 4.09 0 01-1.859-.513v.052a4.104 4.104 0 003.292 4.023 4.099 4.099 0 01-1.853.07 4.11 4.11 0 003.833 2.85A8.236 8.236 0 012 18.407a11.616 11.616 0 006.29 1.84c7.547 0 11.675-6.25 11.675-11.675 0-.178-.004-.355-.012-.531A8.322 8.322 0 0022.23 5.924z" />
+                          <path d="M22.675 0H1.325C.593 0 0 .593 0 1.326v21.348C0 23.407.593 24 1.325 24H12.82v-9.294H9.692V11.41h3.128V8.797c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.312h3.587l-.467 3.296h-3.12V24h6.116C23.407 24 24 23.407 24 22.674V1.326C24 .593 23.407 0 22.675 0z" />
                         </svg>
                       ),
-                      label: "Twitter",
-                      link: "https://www.linkedin.com/in/dazzle-estaciones-5a61121b7/",
+                      label: "Facebook",
+                      link: "https://www.facebook.com/jazzestaciones",
                     },
                     {
                       icon: (
