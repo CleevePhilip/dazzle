@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence, useInView } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { FiDownload, FiArrowRight, FiSend } from "react-icons/fi";
 import {
   Carousel,
@@ -11,7 +11,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { TechStack } from "@/components/tech-stack";
-import { link } from "fs";
+
 const Home = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -334,7 +334,7 @@ const Home = () => {
                   transition={{ duration: 0.5, delay: 0.3 }}
                   className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight"
                 >
-                  UNLEASH YOUR WEBSITE'S
+                  UNLEASH YOUR WEBSITE&apos;S
                   <span className="block text-orange-500">POTENTIAL</span>
                   <span className="block text-2xl sm:text-3xl md:text-4xl mt-2 text-gray-600">
                     with the best designer
@@ -498,8 +498,8 @@ const Home = () => {
                   transition={{ duration: 0.5, delay: 0.2 }}
                   className="leading-relaxed"
                 >
-                  Hi! I'm Dazzle Estaciones, a 4th-year IT student at Holy Cross
-                  of Davao College. I specialize in creating clean,
+                  Hi! I&apos;m Dazzle Estaciones, a 4th-year IT student at Holy
+                  Cross of Davao College. I specialize in creating clean,
                   user-friendly designs for mobile apps and websites, with a
                   keen eye for detail and documentation.
                 </motion.p>
@@ -608,7 +608,7 @@ const Home = () => {
                       key={i}
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.3, delay: i * 0.1 }}
+                      transition={{ duration: 0.6, delay: i * 0.2 }}
                       viewport={{ once: true }}
                       className="group relative pl-8 pb-8 last:pb-0"
                     >
@@ -680,10 +680,12 @@ const Home = () => {
                 className="group bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
               >
                 <div className="relative h-48 overflow-hidden bg-gray-100">
-                  <img
+                  <Image
                     src={project.image}
                     alt={`${project.title} Screenshot`}
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    width={300}
+                    height={300}
                   />
                 </div>
                 <div className="p-6 space-y-4">
@@ -755,14 +757,14 @@ const Home = () => {
                     Get in Touch
                   </span>
                   <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
-                    Let's Build Something
+                    Let&apos;s Build Something
                     <span className="block text-orange-500">
                       Amazing Together
                     </span>
                   </h1>
                   <p className="text-gray-600 max-w-lg">
-                    Ready to transform your ideas into reality? I'm here to help
-                    bring your vision to life with creative solutions and
+                    Ready to transform your ideas into reality? I&apos;m here to
+                    help bring your vision to life with creative solutions and
                     exceptional design.
                   </p>
                 </div>
@@ -1074,9 +1076,9 @@ const Home = () => {
                 <span className="block text-orange-500">Digital Presence?</span>
               </h2>
               <p className="text-gray-300 max-w-2xl mx-auto lg:mx-0">
-                Let's collaborate to create exceptional user experiences that
-                drive results. From concept to completion, I'm here to help you
-                succeed in the digital world.
+                Let&apos;s collaborate to create exceptional user experiences
+                that drive results. From concept to completion, I&apos;m here to
+                help you succeed in the digital world.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <a
@@ -1159,7 +1161,7 @@ const Home = () => {
                       label: "LinkedIn",
                       link: "https://www.linkedin.com/in/dazzle-estaciones-5a61121b7/",
                     },
-                  ].map((item: any, index: number) => (
+                  ].map((item, index: number) => (
                     <a
                       key={index}
                       href={item.link}
