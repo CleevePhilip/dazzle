@@ -212,7 +212,7 @@ const Home = () => {
               transition={{ duration: 0.5 }}
               className="text-xl font-bold text-white"
             >
-              Logo
+              {"<DE />"}
             </motion.h1>
             <motion.button
               initial={{ opacity: 0, scale: 0.8 }}
