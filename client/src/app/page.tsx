@@ -283,15 +283,16 @@ const Home = () => {
                         {item}
                       </motion.a>
                     ))}
-                    <motion.button
+                    <motion.a
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.3, delay: 0.6 }}
+                      href="#Contact"
                       className="w-full bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600 transition-colors flex items-center justify-center gap-2 group"
                     >
-                      <span>Get in Touch</span>
+                      <span>Contact</span>
                       <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
-                    </motion.button>
+                    </motion.a>
                   </div>
                 </motion.div>
               </>
