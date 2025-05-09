@@ -51,7 +51,7 @@ const Home = () => {
         },
         {
           school: "Sta. Ana Elementary School",
-          degree: "Junior High School",
+          degree: "Elementary School",
           duration: "2008 – 2014",
         },
       ],
@@ -165,38 +165,34 @@ const Home = () => {
             transition={{ duration: 0.5 }}
             className="text-xl font-bold text-white"
           >
-            Logo
+            {"<DE />"}
           </motion.h1>
           <nav className="flex items-center space-x-8">
-            {[
-              "Home",
-              "About",
-              "Background",
-              "Projects",
-              "Contact",
-              "Certifications",
-            ].map((item, index) => (
-              <motion.a
-                key={item}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-                href={`#${item.toLowerCase()}`}
-                className="relative text-white/90 hover:text-white transition-colors group py-2"
-              >
-                {item}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-300 group-hover:w-full" />
-              </motion.a>
-            ))}
-            <motion.button
+            {["Home", "About", "Background", "Projects", "Certifications"].map(
+              (item, index) => (
+                <motion.a
+                  key={item}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  href={`#${item.toLowerCase()}`}
+                  className="relative text-white/90 hover:text-white transition-colors group py-2"
+                >
+                  {item}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-300 group-hover:w-full" />
+                </motion.a>
+              )
+            )}
+            <motion.a
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, delay: 0.6 }}
               className="bg-orange-500 text-white px-6 py-2.5 rounded-lg hover:bg-orange-600 transition-colors flex items-center gap-2 group"
+              href="#Contact"
             >
               <span>Contact</span>
               <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
-            </motion.button>
+            </motion.a>
           </nav>
         </div>
 
@@ -719,7 +715,7 @@ const Home = () => {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="relative py-20 overflow-hidden">
+        <section id="Contact" className="relative py-20 overflow-hidden">
           {/* Background decoration */}
           <div className="absolute inset-0">
             <div className="absolute inset-0 bg-slate-50"></div>
@@ -749,7 +745,7 @@ const Home = () => {
             </div>
           </div>
           {/* Contact Column */}
-          <div className="relative max-w-7xl mx-auto px-4">
+          <div className="relative max-w-7xl mx-auto px-4" id="contact">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               {/* Contact Information */}
               <motion.div
@@ -885,16 +881,12 @@ const Home = () => {
                     {
                       icon: (
                         <svg
-
-                            className="w-5 h-5"
-
-                            fill="currentColor"
-
-                            viewBox="0 0 24 24"
-                          >
-                        <path d="M22.675 0H1.325C.593 0 0 .593 0 1.326v21.348C0 23.407.593 24 1.325 24H12.82v-9.294H9.692V11.41h3.128V8.797c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.312h3.587l-.467 3.296h-3.12V24h6.116C23.407 24 24 23.407 24 22.674V1.326C24 .593 23.407 0 22.675 0z" />
+                          className="w-5 h-5"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M22.675 0H1.325C.593 0 0 .593 0 1.326v21.348C0 23.407.593 24 1.325 24H12.82v-9.294H9.692V11.41h3.128V8.797c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.312h3.587l-.467 3.296h-3.12V24h6.116C23.407 24 24 23.407 24 22.674V1.326C24 .593 23.407 0 22.675 0z" />
                         </svg>
-
                       ),
                       label: "Facebook",
                       link: "https://www.facebook.com/jazzestaciones",
