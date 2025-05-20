@@ -1242,7 +1242,7 @@ const Home = () => {
                         d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                       />
                     </svg>
-                    <span>contact@dazzle.dev</span>
+                    <span>dazzestaciones@gmail.com</span>
                   </li>
                   <li className="text-gray-300 text-sm flex items-center space-x-2">
                     <svg
