@@ -60,7 +60,7 @@ const Home = () => {
       type: "Achievements",
       items: [
         {
-          school: "Hongkong 5th International Conference Paper Presentation.",
+          school: "Hongkong 5th International Conference.",
           degree: "Paper Presentation",
           duration: "2025",
         },
