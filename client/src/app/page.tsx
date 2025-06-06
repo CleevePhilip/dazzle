@@ -147,6 +147,7 @@ const Home = () => {
 
   const certificates = [
     "/COA.jpg",
+    "/NetworkingBasics.jpg",
     "/COP.jpg",
     "/MCITS.jpg",
     "/UIUX.jpg",
