@@ -114,36 +114,43 @@ const Home = () => {
       image: "/dazzle_plantita_project.png",
       description:
         "A mobile app design for plant lovers, allowing users to browse top-rated plants and place orders easily through a clean, intuitive interface.",
+      tags: ["UI/UX", "Mobile"],
     },
     {
       title: "HCDC Medical Clinic",
       image: "/hcdc_med_project.png",
       description:
         "A user-friendly platform for accessing HCDC Medical Clinic services, including appointment booking, medical record viewing, clinic updates, and health information for students and staff.",
+      tags: ["UI/UX", "Web"],
     },
     {
       title: "User Manual",
       image: "/usermanual_project.png",
       description:
         "A brief guide to navigating the ColinaHealth website, covering account setup, booking appointments, viewing health records, and using key features with ease.",
+      tags: ["UI/UX", "Web"],
     },
     {
       title: "Dazsoul",
       image: "/dazsoul_project.png",
       description: "A personal portfolio showcasing creative designs.",
+      tags: ["UI/UX", "Web"],
     },
     {
       title: "Calamity Alert",
       image: "/calamity_alert_project.png",
       description: "Real-time alert system for natural disasters.",
+      tags: ["UI/UX", "Mobile"],
     },
     {
       title: "SmarTrax",
       image: "/SmarTrax.jpg",
       description:
         "A capstone project on a smart bike and e-bike rental app enabling users to locate, unlock via QR scan, and rent bikes. Features include ride history, wallet tracking, real-time GPS, Firebase authentication, and a mobile-friendly UI.",
+      tags: ["UI/UX", "Mobile", "Web"],
     },
   ];
+  
 
   const certificates = [
     "/COA.jpg",
@@ -705,14 +712,25 @@ const Home = () => {
                     {project.description}
                   </p>
                   <div className="pt-4 flex items-center justify-between">
-                    <div className="flex gap-2">
-                      <span className="px-3 py-1 text-xs font-medium bg-orange-100 text-orange-600 rounded-full">
-                        UI/UX
-                      </span>
-                      <span className="px-3 py-1 text-xs font-medium bg-blue-100 text-blue-600 rounded-full">
-                        Web
-                      </span>
-                    </div>
+                  <div className="pt-4 flex items-center justify-between">
+  <div className="flex gap-2 flex-wrap">
+    {project.tags.map((tag, i) => (
+      <span
+        key={i}
+        className={`px-3 py-1 text-xs font-medium rounded-full ${
+          tag === "UI/UX"
+            ? "bg-orange-100 text-orange-600"
+            : tag === "Mobile"
+            ? "bg-green-100 text-green-600"
+            : "bg-blue-100 text-blue-600"
+        }`}
+      >
+        {tag}
+      </span>
+    ))}
+  </div>
+</div>
+
                   </div>
                 </div>
               </motion.div>
