@@ -149,7 +149,6 @@ const Home = () => {
     "/COA.jpg",
     "/NetworkingBasics.jpg",
     "/COP.jpg",
-    "/MCITS.jpg",
     "/UIUX.jpg",
     "/COC Security.jpg",
     "/Intro to UI_UX cert_.jpg",
