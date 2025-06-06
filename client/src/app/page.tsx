@@ -379,7 +379,8 @@ const Home = () => {
                 className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
               >
                 <a
-                  href="#"
+                  href="/CV-D.pdf"
+                  download="CV-D.pdf"
                   className="group bg-orange-500 text-white px-8 py-4 rounded-xl flex items-center justify-center gap-2 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-orange-500/25"
                 >
                   <FiDownload className="text-lg group-hover:animate-bounce" />
