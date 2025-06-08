@@ -727,7 +727,7 @@ const Home = () => {
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-sm font-medium text-orange-500 hover:text-orange-700 transition-colors"
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-orange-500 text-white font-semibold rounded-md shadow-md hover:bg-orange-600 transition-colors duration-300"
                     >
                       View Full Site
                       <svg
@@ -736,7 +736,7 @@ const Home = () => {
                         viewBox="0 0 24 24"
                         strokeWidth={2}
                         stroke="currentColor"
-                        className="w-4 h-4"
+                        className="w-5 h-5"
                       >
                         <path
                           strokeLinecap="round"
