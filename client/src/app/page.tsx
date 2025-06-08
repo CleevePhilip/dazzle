@@ -12,11 +12,9 @@ import {
 } from "@/components/ui/carousel";
 import { TechStack } from "@/components/tech-stack";
 
-
 const Home = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [selectedCert, setSelectedCert] = useState(null);
 
   // Handle scroll effect
   React.useEffect(() => {
@@ -1082,40 +1080,7 @@ const Home = () => {
             </div>
           </Carousel>
         </section>
-{/* Modal for viewing full certificate */}
-<AnimatePresence>
-        {selectedCert && (
-          <motion.div
-            className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <motion.div
-              initial={{ scale: 0.95 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.95 }}
-              transition={{ duration: 0.3 }}
-              className="relative bg-white rounded-xl shadow-2xl p-4 max-w-5xl w-full"
-            >
-              <button
-                onClick={() => setSelectedCert(null)}
-                className="absolute top-3 right-4 text-2xl font-bold text-gray-700 hover:text-red-500"
-              >
-                ×
-              </button>
-              <Image
-                src={selectedCert}
-                alt="Full Certificate"
-                width={1000}
-                height={700}
-                className="w-full h-auto object-contain rounded-lg"
-              />
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-      
+
         {/* Call to Action */}
         <section className="relative w-full py-20 overflow-hidden">
           <div className="absolute inset-0 bg-slate-800">
