@@ -119,6 +119,7 @@ const Home = () => {
       description:
         "A mobile app design for plant lovers, allowing users to browse top-rated plants and place orders easily through a clean, intuitive interface.",
       tags: ["UI/UX", "Mobile"],
+      link: "https://www.figma.com/design/YLlQeAN8knIjJoxZAAi4cu/HCI102-Dazzle-sPlantita?node-id=0-1&t=AEpm9GqxM37ZkrTN-1"
     },
     {
       title: "HCDC Medical Clinic",
@@ -126,6 +127,7 @@ const Home = () => {
       description:
         "A user-friendly platform for accessing HCDC Medical Clinic services, including appointment booking, medical record viewing, clinic updates, and health information for students and staff.",
       tags: ["UI/UX", "Web"],
+      link: ""
     },
     {
       title: "User Manual",
@@ -133,18 +135,21 @@ const Home = () => {
       description:
         "A brief guide to navigating the ColinaHealth website, covering account setup, booking appointments, viewing health records, and using key features with ease.",
       tags: ["UI/UX", "Web"],
+      link: "https://www.canva.com/design/DAGpvlMQ68g/xeAxHBz8zw_ejOCJDtRg4Q/edit?utm_content=DAGpvlMQ68g&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
     },
     {
       title: "Dazsoul",
       image: "/dazsoul_project.png",
       description: "A personal portfolio showcasing creative designs.",
       tags: ["UI/UX", "Web"],
+      link: "https://www.figma.com/design/nRvADniSp9FAtOiMYxuMgv/Mock-Up-Design?t=AEpm9GqxM37ZkrTN-1"
     },
     {
       title: "Calamity Alert",
       image: "/calamity_alert_project.png",
       description: "Real-time alert system for natural disasters.",
       tags: ["UI/UX", "Mobile"],
+      link: "https://www.figma.com/design/EomRATFOlUySDwepw1Pcqb/CC106-Proj.?t=AEpm9GqxM37ZkrTN-1"
     },
     {
       title: "SmarTrax",
@@ -691,6 +696,13 @@ const Home = () => {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
+              <a
+              key={index}
+              href={project.link || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block"
+            >
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
@@ -717,27 +729,27 @@ const Home = () => {
                   </p>
                   <div className="pt-4 flex items-center justify-between">
                   <div className="pt-4 flex items-center justify-between">
-  <div className="flex gap-2 flex-wrap">
-    {project.tags.map((tag, i) => (
-      <span
-        key={i}
-        className={`px-3 py-1 text-xs font-medium rounded-full ${
-          tag === "UI/UX"
-            ? "bg-orange-100 text-orange-600"
-            : tag === "Mobile"
-            ? "bg-green-100 text-green-600"
-            : "bg-blue-100 text-blue-600"
-        }`}
-      >
-        {tag}
-      </span>
-    ))}
-  </div>
-</div>
-
+              <div className="flex gap-2 flex-wrap">
+                      {project.tags.map((tag, i) => (
+                        <span
+                          key={i}
+                          className={`px-3 py-1 text-xs font-medium rounded-full ${
+                            tag === "UI/UX"
+                              ? "bg-orange-100 text-orange-600"
+                              : tag === "Mobile"
+                              ? "bg-green-100 text-green-600"
+                              : "bg-blue-100 text-blue-600"
+                          }`}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                   </div>
                 </div>
               </motion.div>
+              </a>
             ))}
           </div>
         </section>
