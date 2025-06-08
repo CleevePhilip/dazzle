@@ -95,11 +95,6 @@ const Home = () => {
           duration: "2023 – 2024",
         },
         {
-          school: "Freelance UI Designer",
-          degree: "Designed 5+ client websites",
-          duration: "2022 – Present",
-        },
-        {
           school: "Set Up Computer Networks",
           degree: "Networking",
           duration: "2016 – 2017",
@@ -1070,19 +1065,25 @@ const Home = () => {
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-6">
-                        <button className="bg-orange-500 text-white px-6 py-2 rounded-full text-sm font-medium transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                          View Certificate
-                        </button>
-                      </div>
-                    </div>
-                  </motion.div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <div className="hidden sm:flex">
-              <CarouselPrevious className="hover:bg-orange-500 hover:text-white transition-colors" />
-              <CarouselNext className="hover:bg-orange-500 hover:text-white transition-colors" />
+              <a
+                href={cert}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-orange-500 text-white px-6 py-2 rounded-full text-sm font-medium transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300"
+              >
+                View Certificate
+              </a>
             </div>
+          </div>
+        </motion.div>
+      </CarouselItem>
+    ))}
+  </CarouselContent>
+
+  <div className="hidden sm:flex">
+    <CarouselPrevious className="hover:bg-orange-500 hover:text-white transition-colors" />
+    <CarouselNext className="hover:bg-orange-500 hover:text-white transition-colors" />
+  </div>
           </Carousel>
         </section>
 
