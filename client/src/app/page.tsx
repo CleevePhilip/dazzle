@@ -682,94 +682,103 @@ const Home = () => {
 
         {/* Projects Section */}
         <section
-          id="projects"
-          className="max-w-7xl mx-auto px-4 py-12 sm:py-16 bg-gray-50"
-        >
-          <div className="text-center space-y-4 mb-16">
-            <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-orange-500 to-orange-700 bg-clip-text text-transparent">
-              PROJECTS
-            </h1>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Explore my latest works and creative endeavors in UI/UX design and
-              web development.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
-              >
-                <div className="relative h-48 overflow-hidden bg-gray-100">
-                  <Image
-                    src={project.image}
-                    alt={`${project.title} Screenshot`}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                    width={300}
-                    height={300}
-                  />
-                </div>
-                <div className="p-6 space-y-4">
-                  <h2 className="text-xl font-bold text-gray-800 group-hover:text-orange-500 transition-colors duration-300">
-                    {project.title}
-                  </h2>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    {project.description}
-                  </p>
+  id="projects"
+  className="max-w-7xl mx-auto px-4 py-12 sm:py-16 bg-gray-50"
+>
+  <div className="text-center space-y-4 mb-16">
+    <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-orange-500 to-orange-700 bg-clip-text text-transparent">
+      PROJECTS
+    </h1>
+    <p className="text-gray-600 max-w-2xl mx-auto">
+      Explore my latest works and creative endeavors in UI/UX design and
+      web development.
+    </p>
+  </div>
 
-                  {/* 🔗 View Full Site Button */}
-                  {project.link && (
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2 bg-orange-500 text-white font-semibold rounded-md shadow-md hover:bg-orange-600 transition-colors duration-300"
-                    >
-                      View Full Site
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={2}
-                        stroke="currentColor"
-                        className="w-5 h-5"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M13.5 4.5H19.5V10.5M19.5 4.5L10.5 13.5M4.5 19.5H10.5V13.5"
-                        />
-                      </svg>
-                    </a>
-                  )}
-                  <div className="pt-4 flex items-center justify-between">
-                    <div className="flex gap-2 flex-wrap">
-                      {project.tags.map((tag, i) => (
-                        <span
-                          key={i}
-                          className={`px-3 py-1 text-xs font-medium rounded-full ${
-                            tag === "UI/UX"
-                              ? "bg-orange-100 text-orange-600"
-                              : tag === "Mobile"
-                              ? "bg-green-100 text-green-600"
-                              : "bg-blue-100 text-blue-600"
-                          }`}
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
+  <section className="max-w-7xl mx-auto px-4 py-12 sm:py-16 bg-gray-50">
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    {projects.map((project, index) => (
+      <motion.div
+        key={index}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: index * 0.1 }}
+        viewport={{ once: true }}
+        className="group bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+      >
+        {/* Image section with icon */}
+        <div className="relative h-48 overflow-hidden bg-gray-100">
+          {/* View Site Icon Button */}
+          <div className="absolute top-2 right-2 group z-10">
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 bg-white/90 text-orange-600 hover:bg-orange-500 hover:text-white px-2 py-1 rounded-full text-xs font-medium transition-all duration-300 shadow-md"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+                stroke="currentColor"
+                className="w-4 h-4"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M13.5 4.5H19.5V10.5M19.5 4.5L10.5 13.5M4.5 19.5H10.5V13.5"
+                />
+              </svg>
+              <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                View Full Site
+              </span>
+            </a>
+          </div>
+
+          {/* Project Image */}
+          <Image
+            src={project.image}
+            alt={`${project.title} Screenshot`}
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+            width={300}
+            height={300}
+          />
+        </div>
+
+        {/* Project Text Info */}
+        <div className="p-6 space-y-4">
+          <h2 className="text-xl font-bold text-gray-800 group-hover:text-orange-500 transition-colors duration-300">
+            {project.title}
+          </h2>
+          <p className="text-gray-600 text-sm leading-relaxed">
+            {project.description}
+          </p>
+
+          {/* Tags */}
+          <div className="flex gap-2 flex-wrap pt-4">
+            {project.tags.map((tag, i) => (
+              <span
+                key={i}
+                className={`px-3 py-1 text-xs font-medium rounded-full ${
+                  tag === "UI/UX"
+                    ? "bg-orange-100 text-orange-600"
+                    : tag === "Mobile"
+                    ? "bg-green-100 text-green-600"
+                    : "bg-blue-100 text-blue-600"
+                }`}
+              >
+                {tag}
+              </span>
             ))}
           </div>
-        </section>
+        </div>
+      </motion.div>
+    ))}
+  </div>
+</section>
 
+</section>
         {/* Contact Section */}
         <section id="Contact" className="relative py-20 overflow-hidden">
           {/* Background decoration */}
