@@ -696,13 +696,6 @@ const Home = () => {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
-              <a
-              key={index}
-              href={project.link || "#"}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block"
-            >
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
@@ -727,9 +720,34 @@ const Home = () => {
                   <p className="text-gray-600 text-sm leading-relaxed">
                     {project.description}
                   </p>
+
+                  {/* 🔗 View Full Site Button */}
+                  {project.link && (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-sm font-medium text-orange-500 hover:text-orange-700 transition-colors"
+                    >
+                      View Full Site
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2}
+                        stroke="currentColor"
+                        className="w-4 h-4"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M13.5 4.5H19.5V10.5M19.5 4.5L10.5 13.5M4.5 19.5H10.5V13.5"
+                        />
+                      </svg>
+                    </a>
+                  )}
                   <div className="pt-4 flex items-center justify-between">
-                  <div className="pt-4 flex items-center justify-between">
-              <div className="flex gap-2 flex-wrap">
+                    <div className="flex gap-2 flex-wrap">
                       {project.tags.map((tag, i) => (
                         <span
                           key={i}
@@ -746,10 +764,8 @@ const Home = () => {
                       ))}
                     </div>
                   </div>
-                  </div>
                 </div>
               </motion.div>
-              </a>
             ))}
           </div>
         </section>
