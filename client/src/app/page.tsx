@@ -15,9 +15,16 @@ import { TechStack } from "@/components/tech-stack";
 const Home = () => {
 
   const [selectedCert, setSelectedCert] = useState<string | null>(null);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  // Reset imageLoaded when modal opens
+  React.useEffect(() => {
+    if (selectedCert) {
+      setImageLoaded(false);
+    }
+  }, [selectedCert]);
   // Handle scroll effect
   React.useEffect(() => {
     const handleScroll = () => {
@@ -1067,12 +1074,12 @@ const Home = () => {
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-6">
-                      <button
-                        onClick={() => setSelectedCert(cert)}
-                        className="bg-orange-500 text-white px-6 py-2 rounded-full text-sm font-medium transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300"
-                      >
-                        View Certificate
-                      </button>
+                        <button
+                          onClick={() => setSelectedCert(cert)}
+                          className="bg-orange-500 hover:bg-orange-700 text-white px-6 py-2 rounded-full text-sm font-medium transform translate-y-4 group-hover:translate-y-0 transition-all duration-300"
+                        >
+                          View Certificate
+                        </button>
                       </div>
                     </div>
                   </motion.div>
@@ -1087,37 +1094,40 @@ const Home = () => {
           <AnimatePresence>
                 {selectedCert && (
                   <motion.div
-                    className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                  >
-                    <motion.div
-                      initial={{ scale: 0.95 }}
-                      animate={{ scale: 1 }}
-                      exit={{ scale: 0.95 }}
-                      transition={{ duration: 0.3 }}
-                      className="relative bg-white rounded-xl shadow-2xl p-4 max-w-5xl w-full"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center px-4"
+                >
+                  <div className="relative w-full max-w-4xl mx-auto bg-white p-4 rounded-lg shadow-lg">
+                    <button
+                      onClick={() => setSelectedCert(null)}
+                      className="absolute top-2 right-2 text-white bg-black/60 hover:bg-black/80 p-2 rounded-full z-10"
                     >
-                      <button
-                        onClick={() => setSelectedCert(null)}
-                        className="absolute top-3 right-4 text-2xl font-bold text-gray-700 hover:text-red-500"
-                      >
-                        ×
-                      </button>
-                      <Image
-                        src={selectedCert}
-                        alt="Full Certificate"
-                        width={1000}
-                        height={700}
-                        className="w-full h-auto object-contain rounded-lg"
-                      />
-                    </motion.div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                      ✕
+                    </button>
+            
+                    {/* Spinner when image is loading */}
+                    {!imageLoaded && (
+                      <div className="absolute inset-0 flex items-center justify-center bg-white/70 z-10">
+                        <div className="h-12 w-12 animate-spin rounded-full border-4 border-t-4 border-gray-200 border-t-orange-500"></div>
+                      </div>
+                    )}
+            
+                    {/* Certificate Image */}
+                    <Image
+                      src={selectedCert}
+                      alt="Full Certificate"
+                      width={1000}
+                      height={700}
+                      className="w-full h-auto rounded"
+                      onLoadingComplete={() => setImageLoaded(true)}
+                    />
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
         </section>
-
         {/* Call to Action */}
         <section className="relative w-full py-20 overflow-hidden">
           <div className="absolute inset-0 bg-slate-800">
