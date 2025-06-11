@@ -996,6 +996,9 @@ const Home = () => {
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-orange-600 transform rotate-3 rounded-3xl opacity-10"></div>
                 <div className="relative bg-white shadow-xl rounded-3xl p-8">
+                <p className="text-sm text-gray-600 mb-6">
+                    Feel free to reach out by filling out the form below. Your message will be sent directly to my email, and I’ll get back to you as soon as possible.
+                </p>
                   <form
                     action="https://formspree.io/f/mvgrkeoo" // 🔁 Replace with your actual Formspree form ID
                     method="POST"
