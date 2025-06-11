@@ -996,7 +996,14 @@ const Home = () => {
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-orange-600 transform rotate-3 rounded-3xl opacity-10"></div>
                 <div className="relative bg-white shadow-xl rounded-3xl p-8">
-                  <form className="space-y-6">
+                  <form
+                    action="https://formspree.io/f/mvgrkeoo" // 🔁 Replace with your actual Formspree form ID
+                    method="POST"
+                    className="space-y-6"
+                  >
+                    {/* Optional redirect after submit */}
+                    <input type="hidden" name="_redirect" value="https://yourwebsite.com/thank-you" />
+
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <label
@@ -1007,6 +1014,7 @@ const Home = () => {
                         </label>
                         <input
                           type="text"
+                          name="name"
                           id="name"
                           className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all duration-300"
                           placeholder="John Doe"
@@ -1021,6 +1029,7 @@ const Home = () => {
                         </label>
                         <input
                           type="email"
+                          name="email"
                           id="email"
                           className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all duration-300"
                           placeholder="john@example.com"
@@ -1037,6 +1046,7 @@ const Home = () => {
                       </label>
                       <input
                         type="text"
+                        name="subject"
                         id="subject"
                         className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all duration-300"
                         placeholder="Project Discussion"
@@ -1051,13 +1061,13 @@ const Home = () => {
                         Message
                       </label>
                       <textarea
+                        name="message"
                         id="message"
                         rows={5}
                         className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all duration-300"
                         placeholder="Tell me about your project..."
                       />
                     </div>
-
                     <motion.button
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
