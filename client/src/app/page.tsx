@@ -995,7 +995,8 @@ const Home = () => {
                 className="relative"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-orange-600 transform rotate-3 rounded-3xl opacity-10"></div>
-                <div className="relative bg-white shadow-xl rounded-3xl p-8">
+                <div className="relative bg-white shadow-xl rounded-3xl p-8 transition-transform duration-300 hover:scale-105 hover:shadow-2xl hover:ring-4 hover:ring-orange-500/10">
+               <h2 className="text-lg font-semibold text-orange-500 mb-4">Get in Touch</h2>
                 <p className="text-sm text-gray-600 mb-6">
                     Feel free to reach out by filling out the form below. Your message will be sent directly to my email, and I’ll get back to you as soon as possible.
                 </p>
