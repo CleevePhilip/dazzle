@@ -168,6 +168,10 @@ const Home = () => {
     "/UIUX.jpg",
     "/COC Security.jpg",
     "/Intro to UI_UX cert_.jpg",
+    "/ProjectW1.png",
+    "/ProjectW2.png",
+    "Intro. to IoT and Digital Transformation.jpg",
+    "OJT cert.jpeg"
   ];
 
   return (
