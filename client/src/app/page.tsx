@@ -1158,7 +1158,7 @@ const Home = () => {
                   <div className="relative w-full max-w-4xl mx-auto bg-white p-4 rounded-lg shadow-lg">
                     <button
                       onClick={() => setSelectedCert(null)}
-                      className="absolute top-2 right-2 text-white bg-black/60 hover:bg-black/80 p-2 rounded-full z-10"
+                      className="absolute top-2 right-2 text-white bg-orange-500 hover:bg-orange-600 active:bg-orange-700 transition-all duration-200 p-2 rounded-full z-10 shadow-md w-10 h-10 flex items-center justify-center"
                     >
                       ✕
                     </button>
