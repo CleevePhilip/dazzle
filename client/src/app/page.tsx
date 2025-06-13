@@ -1092,7 +1092,7 @@ const Home = () => {
           </div>
         </section>
 
-        {/* Certificates Section */}
+                {/* Certificates Section */}
         <section id="certifications" className="py-16 bg-gray-100">
           <div className="text-center space-y-4 mb-16">
             <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-orange-500 to-orange-700 bg-clip-text text-transparent">
@@ -1102,13 +1102,13 @@ const Home = () => {
               Professional certifications and achievements that validate my expertise
             </p>
           </div>
-          <Carousel className="w-full max-w-7xl mx-auto px-4">
-            {/* Added mobile-friendly scroll and snap */}
-            <CarouselContent className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth touch-pan-x">
+          {/* Carousel */}
+          <div className="w-full max-w-7xl mx-auto overflow-x-auto px-4 sm:px-0">
+            <div className="flex gap-4 snap-x snap-mandatory scroll-smooth touch-pan-x -mx-4 sm:mx-0 px-4 sm:px-0">
               {certificates.map((cert, index) => (
-                <CarouselItem
+                <div
                   key={index}
-                  className="basis-full sm:basis-1/2 lg:basis-1/3 snap-center p-2"
+                  className="snap-center shrink-0 w-full sm:w-1/2 lg:w-1/3 p-2"
                 >
                   <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
@@ -1125,7 +1125,7 @@ const Home = () => {
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       />
 
-                      {/* Mobile: Always show View button. Desktop: Show on hover */}
+                      {/* Always visible on mobile, hover on desktop */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-6">
                         <button
                           onClick={() => setSelectedCert(cert)}
@@ -1136,18 +1136,18 @@ const Home = () => {
                       </div>
                     </div>
                   </motion.div>
-                </CarouselItem>
+                </div>
               ))}
-            </CarouselContent>
-
-            {/* Arrows always visible on all devices */}
-            <div className="flex justify-center gap-2 mt-4">
-              <CarouselPrevious className="hover:bg-orange-500 hover:text-white transition-colors" />
-              <CarouselNext className="hover:bg-orange-500 hover:text-white transition-colors" />
             </div>
-          </Carousel>
+          </div>
 
-          {/* Modal */}
+          {/* Hide arrows on mobile */}
+          <div className="hidden sm:flex justify-center gap-2 mt-4">
+            <CarouselPrevious className="hover:bg-orange-500 hover:text-white transition-colors" />
+            <CarouselNext className="hover:bg-orange-500 hover:text-white transition-colors" />
+          </div>
+
+          {/* Modal Viewer */}
           <AnimatePresence>
             {selectedCert && (
               <motion.div
@@ -1165,14 +1165,12 @@ const Home = () => {
                     ✕
                   </button>
 
-                  {/* Spinner */}
                   {!imageLoaded && (
                     <div className="absolute inset-0 flex items-center justify-center bg-white/70 z-10">
                       <div className="h-12 w-12 animate-spin rounded-full border-4 border-t-4 border-gray-200 border-t-orange-500"></div>
                     </div>
                   )}
 
-                  {/* Certificate Image */}
                   <Image
                     src={selectedCert}
                     alt="Full Certificate"
