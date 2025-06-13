@@ -6,7 +6,7 @@ const NavbarMobile = () => {
       <nav className="flex justify-between items-center max-w-7xl mx-auto py-4 px-6 ">
         <h1 className="text-3xl font-semibold">[D.E]</h1>
 
-        <ul className="hidden md:flex space-x-6 text-white font-medium">
+        <ul className="flex flex-wrap gap-4 md:flex md:space-x-6 text-white font-medium text-sm">
           {["home", "about", "background", "projects", "certifications"].map(
             (item) => (
               <li key={item}>
