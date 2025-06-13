@@ -1149,9 +1149,10 @@ const Home = () => {
           <AnimatePresence>
                 {selectedCert && (
                   <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.3 }}
                   className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center px-4"
                 >
                   <div className="relative w-full max-w-4xl mx-auto bg-white p-4 rounded-lg shadow-lg">
