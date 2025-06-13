@@ -162,16 +162,16 @@ const Home = () => {
   
 
   const certificates = [
+    "OJT cert.jpeg",
     "/COA.jpg",
     "/NetworkingBasics.jpg",
-    "/COP.jpg",
     "/UIUX.jpg",
+    "/Intro. to IoT and Digital Transformation.jpg",
     "/COC Security.jpg",
     "/Intro to UI_UX cert_.jpg",
     "/ProjectW1.png",
     "/ProjectW2.png",
-    "Intro. to IoT and Digital Transformation.jpg",
-    "OJT cert.jpeg"
+    "/COP.jpg"
   ];
 
   return (
