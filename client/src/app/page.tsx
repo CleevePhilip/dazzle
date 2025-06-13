@@ -1095,7 +1095,7 @@ const Home = () => {
         {/* Certificates Section */}
         <section
           id="certifications"
-          className="w-full mx-auto px-4 py-16 sm:py-20"
+          className="py-16 bg-gray-100"
         >
           <div className="text-center space-y-4 mb-16">
             <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-orange-500 to-orange-700 bg-clip-text text-transparent">
