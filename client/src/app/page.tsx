@@ -1093,26 +1093,22 @@ const Home = () => {
         </section>
 
         {/* Certificates Section */}
-        <section
-          id="certifications"
-          className="py-16 bg-gray-100"
-        >
+        <section id="certifications" className="py-16 bg-gray-100">
           <div className="text-center space-y-4 mb-16">
             <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-orange-500 to-orange-700 bg-clip-text text-transparent">
               CERTIFICATIONS
             </h1>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Professional certifications and achievements that validate my
-              expertise
+              Professional certifications and achievements that validate my expertise
             </p>
           </div>
-
-          <Carousel className="w-full max-w-7xl mx-auto">
-            <CarouselContent>
+          <Carousel className="w-full max-w-7xl mx-auto px-4">
+            {/* Added mobile-friendly scroll and snap */}
+            <CarouselContent className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth touch-pan-x">
               {certificates.map((cert, index) => (
                 <CarouselItem
                   key={index}
-                  className="basis-full sm:basis-1/2 lg:basis-1/3 p-2"
+                  className="basis-full sm:basis-1/2 lg:basis-1/3 snap-center p-2"
                 >
                   <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
@@ -1128,6 +1124,8 @@ const Home = () => {
                         width={400}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       />
+
+                      {/* Mobile: Always show View button. Desktop: Show on hover */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-6">
                         <button
                           onClick={() => setSelectedCert(cert)}
@@ -1141,51 +1139,55 @@ const Home = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-             {/* ✅ Show arrows on all screen sizes */}
-              <div className="flex justify-center gap-2 mt-4">
-                <CarouselPrevious className="hover:bg-orange-500 hover:text-white transition-colors" />
-                <CarouselNext className="hover:bg-orange-500 hover:text-white transition-colors" />
-              </div>
+
+            {/* Arrows always visible on all devices */}
+            <div className="flex justify-center gap-2 mt-4">
+              <CarouselPrevious className="hover:bg-orange-500 hover:text-white transition-colors" />
+              <CarouselNext className="hover:bg-orange-500 hover:text-white transition-colors" />
+            </div>
           </Carousel>
+
+          {/* Modal */}
           <AnimatePresence>
-                {selectedCert && (
-                  <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.3 }}
-                  className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center px-4"
-                >
-                  <div className="relative w-full max-w-4xl mx-auto bg-white p-4 rounded-lg shadow-lg">
-                    <button
-                      onClick={() => setSelectedCert(null)}
-                      className="absolute top-2 right-2 text-white bg-orange-500 hover:bg-orange-600 active:bg-orange-700 transition-all duration-200 p-2 rounded-full z-10 shadow-md w-10 h-10 flex items-center justify-center"
-                    >
-                      ✕
-                    </button>
-            
-                    {/* Spinner when image is loading */}
-                    {!imageLoaded && (
-                      <div className="absolute inset-0 flex items-center justify-center bg-white/70 z-10">
-                        <div className="h-12 w-12 animate-spin rounded-full border-4 border-t-4 border-gray-200 border-t-orange-500"></div>
-                      </div>
-                    )}
-            
-                    {/* Certificate Image */}
-                    <Image
-                      src={selectedCert}
-                      alt="Full Certificate"
-                      width={1000}
-                      height={700}
-                      className="w-full h-auto rounded"
-                      onLoadingComplete={() => setImageLoaded(true)}
-                    />
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {selectedCert && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.3 }}
+                className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center px-4"
+              >
+                <div className="relative w-full max-w-4xl mx-auto bg-white p-4 rounded-lg shadow-lg">
+                  <button
+                    onClick={() => setSelectedCert(null)}
+                    className="absolute top-2 right-2 text-white bg-orange-500 hover:bg-orange-600 active:bg-orange-700 transition-all duration-200 p-2 rounded-full z-10 shadow-md w-10 h-10 flex items-center justify-center"
+                  >
+                    ✕
+                  </button>
+
+                  {/* Spinner */}
+                  {!imageLoaded && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-white/70 z-10">
+                      <div className="h-12 w-12 animate-spin rounded-full border-4 border-t-4 border-gray-200 border-t-orange-500"></div>
+                    </div>
+                  )}
+
+                  {/* Certificate Image */}
+                  <Image
+                    src={selectedCert}
+                    alt="Full Certificate"
+                    width={1000}
+                    height={700}
+                    className="w-full h-auto rounded"
+                    onLoadingComplete={() => setImageLoaded(true)}
+                  />
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </section>
-        {/* Call to Action */}
+        
+  {/* Call to Action */}
         <section className="relative w-full py-20 overflow-hidden">
           <div className="absolute inset-0 bg-slate-800">
             <div className="absolute inset-0 bg-[url('/globe.svg')] opacity-10"></div>
