@@ -1141,10 +1141,11 @@ const Home = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <div className="hidden sm:flex">
-              <CarouselPrevious className="hover:bg-orange-500 hover:text-white transition-colors" />
-              <CarouselNext className="hover:bg-orange-500 hover:text-white transition-colors" />
-            </div>
+             {/* ✅ Show arrows on all screen sizes */}
+              <div className="flex justify-center gap-2 mt-4">
+                <CarouselPrevious className="hover:bg-orange-500 hover:text-white transition-colors" />
+                <CarouselNext className="hover:bg-orange-500 hover:text-white transition-colors" />
+              </div>
           </Carousel>
           <AnimatePresence>
                 {selectedCert && (
