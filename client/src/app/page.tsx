@@ -127,7 +127,7 @@ const Home = () => {
       description:
         "A user-friendly platform for accessing HCDC Medical Clinic services, including appointment booking, medical record viewing, clinic updates, and health information for students and staff.",
       tags: ["UI/UX", "Web"],
-      link: ""
+      link: "https://github.com/Dazzle0101/HCDC-Clinic"
     },
     {
       title: "User Manual",
